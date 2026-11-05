@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شمس - لخدمات التوصيل والنقل السريع</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-gold: #d4af37;
+            --gold-gradient: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+            --bg-dark: #0d0d0d;
+            --card-bg: #171717;
+            --text-light: #f5f5f5;
+            --text-muted: #a0a0a0;
+            --whatsapp-green: #25d366;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: rgba(13, 13, 13, 0.95);
+            border-bottom: 2px solid var(--primary-gold);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--gold-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-size: 22px;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .logo-text h1 {
+            font-size: 24px;
+            font-weight: 900;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .logo-text span {
+            font-size: 11px;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 14px;
+        }
+
+        .btn-gold {
+            background: var(--gold-gradient);
+            color: #000;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+        }
+
+        .btn-whatsapp {
+            background-color: var(--whatsapp-green);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+        }
+
+        .hero {
+            padding: 150px 20px 80px;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.15) 0%, rgba(13, 13, 13, 1) 70%);
+        }
+
+        .hero h2 {
+            font-size: 40px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .hero h2 span {
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .services {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h3 {
+            font-size: 28px;
+            color: var(--primary-gold);
+            display: inline-block;
+            border-bottom: 2px solid var(--primary-gold);
+            padding-bottom: 8px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .service-card {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            border-color: var(--primary-gold);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.15);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary-gold);
+            font-size: 30px;
+            border: 1px solid var(--primary-gold);
+        }
+
+        .service-card h4 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .service-card ul {
+            list-style: none;
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .service-card ul li {
+            margin-bottom: 10px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .service-card ul li i {
+            color: var(--primary-gold);
+            font-size: 14px;
+        }
+
+        .order-section {
+            padding: 60px 20px;
+            background-color: #121212;
+        }
+
+        .order-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid var(--primary-gold);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary-gold);
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            background-color: #0d0d0d;
+            color: #fff;
+            outline: none;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--primary-gold);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            justify-content: center;
+        }
+
+        .floating-buttons {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 1000;
+        }
+
+        .float-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 24px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .float-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .float-wa { background-color: var(--whatsapp-green); }
+        .float-call { background-color: #007bff; }
+
+        footer {
+            background-color: #000;
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 1px solid #222;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h2 { font-size: 30px; }
+            .nav-container { flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon"><i class="fa-solid fa-sun"></i></div>
+                <div class="logo-text">
+                    <h1>شمس SHAMS</h1>
+                    <span>خدمات التوصيل والنقل السريع</span>
+                </div>
+            </div>
+            <div class="nav-buttons">
+                <a href="tel:0986835109" class="btn btn-gold"><i class="fa-solid fa-phone"></i> اتصل بنا</a>
+                <a href="https://api.whatsapp.com/send?phone=963997973734" target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> واتساب</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h2>أسرع خدمة توصيل ونقل في <span>درعا وسوريا</span></h2>
+        <p>نصلك أينما كنت بأمان وسرعة عالية. خدمات موتوسيكل، تاكسي، توصيل مطاعم، ونقل دولي.</p>
+        <div class="hero-btns">
+            <a href="#order" class="btn btn-gold"><i class="fa-solid fa-paper-plane"></i> اطلب الآن</a>
+            <a href="https://api.whatsapp.com/send?phone=963997973734" target="_blank" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> تواصل عبر الواتساب</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="section-title">
+            <h3>خدماتنا المتميزة</h3>
+        </div>
+        <div class="services-grid">
+            
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-motorcycle"></i></div>
+                <h4>خدمات توصيل سريعة</h4>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> توصيل موتوسيكل سريع</li>
+                    <li><i class="fa-solid fa-check"></i> توصيل الطلبات من المطاعم والصيدليات</li>
+                    <li><i class="fa-solid fa-check"></i> توصيل عام لكافة الطرود والاحتياجات</li>
+                </ul>
+                <a href="https://api.whatsapp.com/send?phone=963997973734&text=أرغب%20في%20طلب%20خدمة%20توصيل%20سريعة" target="_blank" class="btn btn-gold" style="width: 100%; justify-content: center;">اطلب توصيل سريع</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon"><i class="fa-solid fa-taxi"></i></div>
+                <h4>خدمات نقل خاص وتاكسي</h4>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> تاكسي داخلي وخارجي</li>
+                    <li><i class="fa-solid fa-check"></i> خدمات نقل VIP متميزة</li>
+                    <li><i class="fa-solid fa-check"></i> توصيل مباشر لـ مطار دمشق الدولي</li>
+                </ul>
+                <a href="https://api.whatsapp.com/send?phone=963997973734&text=أرغب%20في%20طلب%20خدمة%20تاكسي%20أو%20نقل" target="_blank" class="btn btn-gold" style="width: 100%; justify-content: center;">اطلب تاكسي / نقل</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Order Section -->
+    <section class="order-section" id="order">
+        <div class="section-title">
+            <h3>أرسل طلبك الآن</h3>
+        </div>
+        <div class="order-container">
+            <form onsubmit="sendToWhatsApp(event)">
+                <div class="form-group">
+                    <label>الاسم الكامل</label>
+                    <input type="text" id="custName" placeholder="أدخل اسمك" required>
+                </div>
+                <div class="form-group">
+                    <label>رقم الهاتف</label>
+                    <input type="tel" id="custPhone" placeholder="09xxxxxxx" required>
+                </div>
+                <div class="form-group">
+                    <label>نوع الخدمة المطلوب</label>
+                    <select id="serviceType">
+                        <option>توصيل موتوسيكل سريع</option>
+                        <option>توصيل مطاعم وصيدليات</option>
+                        <option>توصيل عام / طرود</option>
+                        <option>تاكسي داخلي</option>
+                        <option>تاكسي خارجي / بين المحافظات</option>
+                        <option>توصيل مطار دمشق الدولي</option>
+                        <option>خدمات VIP</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>مكان الانطلاق (الاستلام)</label>
+                    <input type="text" id="pickupLoc" placeholder="مثال: درعا - حي المطار" required>
+                </div>
+                <div class="form-group">
+                    <label>الوجهة (التسليم)</label>
+                    <input type="text" id="dropLoc" placeholder="أدخل المكان المراد التوصيل إليه" required>
+                </div>
+                <div class="form-group">
+                    <label>ملاحظات إضافية</label>
+                    <textarea id="notes" rows="3" placeholder="أي تفاصيل أخرى تريد إضافتها..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-whatsapp btn-submit">
+                    <i class="fa-brands fa-whatsapp"></i> إرسال الطلب فوراً عبر الواتساب
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Floating Action Buttons -->
+    <div class="floating-buttons">
+        <a href="https://api.whatsapp.com/send?phone=963997973734" target="_blank" class="float-btn float-wa" title="واتساب"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="tel:0986835109" class="float-btn float-call" title="اتصال مباشر"><i class="fa-solid fa-phone"></i></a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>العنوان: درعا - حي المطار | للاتصال المباشر: 0986835109 | واتساب: 0997973734</p>
+        <p style="margin-top: 10px; color: var(--primary-gold);">جميع الحقوق محفوظة © شمس SHAMS 2026</p>
+    </footer>
+
+    <script>
+        function sendToWhatsApp(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('custName').value;
+            const phone = document.getElementById('custPhone').value;
+            const service = document.getElementById('serviceType').value;
+            const pickup = document.getElementById('pickupLoc').value;
+            const drop = document.getElementById('dropLoc').value;
+            const notes = document.getElementById('notes').value;
+
+            const textMessage = `*طلب جديد من الموقع الإلكتروني - شمس*%0A%0A` +
+                               `*الاسم:* ${encodeURIComponent(name)}%0A` +
+                               `*رقم التواصل:* ${encodeURIComponent(phone)}%0A` +
+                               `*الخدمة:* ${encodeURIComponent(service)}%0A` +
+                               `*مكان الاستلام:* ${encodeURIComponent(pickup)}%0A` +
+                               `*الوجهة:* ${encodeURIComponent(drop)}%0A` +
+                               `*ملاحظات:* ${encodeURIComponent(notes || 'لا يوجد')}`;
+
+            const waUrl = `https://api.whatsapp.com/send?phone=963997973734&text=${textMessage}`;
+            
+            // فتح المباشر بدون منع المتصفح
+            window.location.href = waUrl;
+        }
+    </script>
+</body>
+</html>
