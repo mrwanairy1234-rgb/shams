@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شمس | الخدمة الملكية للتوصيل والنقل الفاخر - درعا</title>
+    <title>شمس | الخدمة الملكية للتوصيل والنقل السريع - درعا</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
@@ -23,535 +23,186 @@
             --shadow-gold: rgba(212, 175, 55, 0.2);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Cairo', sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background-color: var(--bg-base); color: var(--text-main); line-height: 1.8; padding-bottom: 140px; overflow-x: hidden; background-image: radial-gradient(circle at 15% 15%, rgba(212, 175, 55, 0.12) 0%, transparent 40%), radial-gradient(circle at 50% 50%, rgba(10, 10, 15, 1) 0%, rgba(2, 2, 4, 1) 100%); background-attachment: fixed; }
+        
+        #splash-screen { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #020204; z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; transition: opacity 1s cubic-bezier(0.165, 0.84, 0.44, 1), visibility 1s; }
+        .splash-logo-wrap { position: relative; width: 130px; height: 130px; margin-bottom: 24px; background: radial-gradient(circle, rgba(212, 175, 55, 0.35) 0%, rgba(10, 10, 15, 0.98) 75%); border: 2px solid var(--gold-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 60px rgba(212, 175, 55, 0.5); animation: logo-glow 2s infinite alternate ease-in-out; }
+        @keyframes logo-glow { 0% { transform: scale(0.95); box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); } 100% { transform: scale(1.05); box-shadow: 0 0 70px rgba(212, 175, 55, 0.7); } }
+        .splash-logo { font-size: 65px; }
+        .splash-title { font-size: 40px; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 3px; margin-bottom: 8px; }
+        .splash-subtitle { color: var(--text-sub); font-size: 14px; margin-bottom: 30px; }
+        .loader-bar-bg { width: 220px; height: 4px; background: rgba(255, 255, 255, 0.08); border-radius: 4px; overflow: hidden; border: 1px solid rgba(212, 175, 55, 0.2); }
+        .loader-bar-fill { width: 0%; height: 100%; background: var(--gold-gradient); box-shadow: 0 0 15px var(--gold-primary); animation: loadProgress 2.2s ease-in-out forwards; }
+        @keyframes loadProgress { 0% { width: 0%; } 100% { width: 100%; } }
 
-        body {
-            background-color: var(--bg-base);
-            color: var(--text-main);
-            line-height: 1.8;
-            padding-bottom: 140px;
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 15% 15%, rgba(212, 175, 55, 0.12) 0%, transparent 40%),
-                radial-gradient(circle at 85% 85%, rgba(153, 122, 21, 0.08) 0%, transparent 45%),
-                radial-gradient(circle at 50% 50%, rgba(10, 10, 15, 1) 0%, rgba(2, 2, 4, 1) 100%);
-            background-attachment: fixed;
-        }
+        .container { max-width: 600px; margin: 0 auto; padding: 24px 16px; }
+        .luxury-card { background: var(--card-glass); backdrop-filter: blur(30px); border: 1px solid var(--border-glow); border-radius: 32px; padding: 34px 26px; margin-bottom: 28px; box-shadow: 0 35px 80px rgba(0, 0, 0, 0.95); transition: all 0.4s ease; }
+        .luxury-card:hover { border-color: var(--gold-primary); transform: translateY(-4px); }
+        
+        .hero-header { text-align: center; padding: 40px 20px; }
+        .brand-logo-wrap { width: 110px; height: 110px; margin: 0 auto 18px; background: radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, rgba(10, 10, 15, 0.95) 75%); border: 2px solid var(--gold-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 45px rgba(212, 175, 55, 0.4); }
+        .brand-logo { font-size: 55px; }
+        .hero-header h1 { font-size: 46px; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .vip-badge { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(10, 10, 15, 0.95)); color: var(--gold-light); border: 1px solid var(--gold-primary); padding: 8px 24px; border-radius: 40px; font-size: 13px; font-weight: 700; margin-top: 18px; }
 
-        /* Splash Screen Launch */
-        #splash-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: #020204;
-            z-index: 10000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            transition: opacity 1s cubic-bezier(0.165, 0.84, 0.44, 1), visibility 1s;
-        }
+        .section-title { color: var(--gold-light); font-size: 20px; font-weight: 700; margin-bottom: 20px; border-bottom: 1px solid rgba(212, 175, 55, 0.25); padding-bottom: 12px; display: flex; align-items: center; gap: 10px; }
 
-        .splash-logo-wrap {
-            position: relative;
-            width: 130px;
-            height: 130px;
-            margin-bottom: 24px;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.35) 0%, rgba(10, 10, 15, 0.98) 75%);
-            border: 2px solid var(--gold-primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 60px rgba(212, 175, 55, 0.5);
-            animation: logo-glow 2s infinite alternate ease-in-out;
-        }
+        /* Stats Bar */
+        .stats-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; background: rgba(8, 8, 12, 0.95); border: 1px solid var(--border-glow); border-radius: 20px; padding: 18px 10px; margin-bottom: 28px; text-align: center; }
+        .stat-item .number { font-size: 20px; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .stat-item .label { font-size: 11px; color: var(--text-sub); margin-top: 4px; font-weight: 600; }
 
-        @keyframes logo-glow {
-            0% { transform: scale(0.95); box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); }
-            100% { transform: scale(1.05); box-shadow: 0 0 70px rgba(212, 175, 55, 0.7); }
-        }
+        /* AI Assistant Box */
+        .ai-assistant-box { background: linear-gradient(145deg, #0d0d14, #050508); border: 1.5px solid var(--gold-primary); border-radius: 24px; padding: 22px; }
+        .ai-result-card { display: none; background: rgba(18, 18, 26, 0.95); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 18px; padding: 18px; margin-top: 16px; font-size: 14px; color: #fff; line-height: 1.7; }
 
-        .splash-logo {
-            font-size: 65px;
-            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.9));
-        }
+        .services-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+        .service-item { background: linear-gradient(145deg, rgba(16, 16, 24, 0.95), rgba(6, 6, 9, 0.95)); border: 1px solid rgba(212, 175, 55, 0.18); border-radius: 18px; padding: 18px; display: flex; align-items: flex-start; gap: 14px; }
+        .service-icon { font-size: 28px; background: rgba(212, 175, 55, 0.1); width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(212, 175, 55, 0.3); flex-shrink: 0; }
+        .service-content h3 { color: var(--gold-light); font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+        .service-content p { color: var(--text-sub); font-size: 13px; }
 
-        .splash-title {
-            font-size: 40px;
-            font-weight: 900;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 3px;
-            margin-bottom: 8px;
-        }
+        .vehicle-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
+        .vehicle-btn { background: rgba(8, 8, 12, 0.95); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 14px 6px; text-align: center; cursor: pointer; font-size: 12px; font-weight: 700; color: var(--text-sub); display: flex; flex-direction: column; align-items: center; gap: 6px; }
+        .vehicle-btn.active { border-color: var(--gold-primary); background: linear-gradient(135deg, rgba(212, 175, 55, 0.25), rgba(14, 14, 20, 0.95)); color: var(--gold-light); box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
 
-        .splash-subtitle {
-            color: var(--text-sub);
-            font-size: 14px;
-            margin-bottom: 30px;
-        }
+        .form-group { margin-bottom: 18px; }
+        label { display: block; margin-bottom: 8px; font-size: 13px; color: var(--gold-light); font-weight: 600; }
+        select, input, textarea { width: 100%; padding: 15px; background: rgba(6, 6, 9, 0.95); border: 1px solid rgba(212, 175, 55, 0.28); border-radius: 16px; color: #fff; font-size: 14px; outline: none; }
 
-        .loader-bar-bg {
-            width: 220px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 4px;
-            overflow: hidden;
-            position: relative;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-        }
-
-        .loader-bar-fill {
-            width: 0%;
-            height: 100%;
-            background: var(--gold-gradient);
-            box-shadow: 0 0 15px var(--gold-primary);
-            animation: loadProgress 2.2s ease-in-out forwards;
-        }
-
-        @keyframes loadProgress {
-            0% { width: 0%; }
-            50% { width: 65%; }
-            100% { width: 100%; }
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 24px 16px;
-        }
-
-        .luxury-card {
-            background: var(--card-glass);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: 1px solid var(--border-glow);
-            border-radius: 32px;
-            padding: 34px 26px;
-            margin-bottom: 28px;
-            box-shadow: 0 35px 80px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        .luxury-card:hover {
-            border-color: var(--gold-primary);
-            box-shadow: 0 40px 90px rgba(0, 0, 0, 0.98), 0 0 35px var(--shadow-gold);
-            transform: translateY(-4px);
-        }
-
-        .hero-header {
-            text-align: center;
-            padding: 50px 20px 40px;
-            background: linear-gradient(180deg, rgba(212, 175, 55, 0.12) 0%, rgba(14, 14, 20, 0.85) 100%);
-        }
-
-        .brand-logo-wrap {
-            position: relative;
-            width: 110px;
-            height: 110px;
-            margin: 0 auto 22px;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, rgba(10, 10, 15, 0.95) 75%);
-            border: 2px solid var(--gold-primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 45px rgba(212, 175, 55, 0.4);
-            animation: pulse-glow 3s infinite alternate;
-        }
-
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.25); }
-            100% { box-shadow: 0 0 50px rgba(212, 175, 55, 0.65); }
-        }
-
-        .brand-logo {
-            font-size: 55px;
-            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.8));
-        }
-
-        .hero-header h1 {
-            font-size: 46px;
-            font-weight: 900;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-        }
-
-        .hero-header p { color: var(--text-sub); font-size: 15px; }
-
-        .vip-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(10, 10, 15, 0.95));
-            color: var(--gold-light);
-            border: 1px solid var(--gold-primary);
-            padding: 9px 28px;
-            border-radius: 40px;
-            font-size: 13px;
-            font-weight: 700;
-            margin-top: 22px;
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
-        }
-
-        .section-title {
-            color: var(--gold-light);
-            font-size: 21px;
-            font-weight: 700;
-            margin-bottom: 22px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.25);
-            padding-bottom: 14px;
-        }
-
-        /* AI Smart Assistant Box */
-        .ai-assistant-box {
-            background: linear-gradient(145deg, #0d0d14, #050508);
-            border: 1.5px solid var(--gold-primary);
-            border-radius: 24px;
-            padding: 22px;
-            margin-bottom: 10px;
-            box-shadow: inset 0 0 25px rgba(0,0,0,0.8), 0 0 25px rgba(212, 175, 55, 0.15);
-        }
-
-        .ai-result-card {
-            display: none;
-            background: rgba(18, 18, 26, 0.95);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 18px;
-            padding: 18px;
-            margin-top: 16px;
-            font-size: 14px;
-            color: #fff;
-            line-height: 1.7;
-        }
-
-        .ai-result-card h4 {
-            color: var(--gold-light);
-            margin-bottom: 8px;
-            font-size: 16px;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 16px;
-        }
-
-        .service-item {
-            background: linear-gradient(145deg, rgba(16, 16, 24, 0.95), rgba(6, 6, 9, 0.95));
-            border: 1px solid rgba(212, 175, 55, 0.18);
-            border-radius: 20px;
-            padding: 22px;
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-            transition: all 0.35s ease;
-        }
-
-        .service-item:hover {
-            border-color: var(--gold-primary);
-            transform: translateY(-3px);
-        }
-
-        .service-icon {
-            font-size: 32px;
-            background: rgba(212, 175, 55, 0.1);
-            width: 60px;
-            height: 60px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            flex-shrink: 0;
-        }
-
-        .service-content h3 { color: var(--gold-light); font-size: 17px; font-weight: 700; margin-bottom: 6px; }
-        .service-content p { color: var(--text-sub); font-size: 13.5px; }
-
-        .vehicle-options {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-bottom: 22px;
-        }
-
-        .vehicle-btn {
-            background: rgba(8, 8, 12, 0.95);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
-            padding: 16px 8px;
-            text-align: center;
-            cursor: pointer;
-            font-size: 12.5px;
-            font-weight: 700;
-            color: var(--text-sub);
-            transition: all 0.35s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .vehicle-btn.active {
-            border-color: var(--gold-primary);
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.25), rgba(14, 14, 20, 0.95));
-            color: var(--gold-light);
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.35);
-        }
-
-        .form-group { margin-bottom: 20px; }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 13.5px;
-            color: var(--gold-light);
-            font-weight: 600;
-        }
-
-        select, input, textarea {
-            width: 100%;
-            padding: 16px 18px;
-            background: rgba(6, 6, 9, 0.95);
-            border: 1px solid rgba(212, 175, 55, 0.28);
-            border-radius: 16px;
-            color: #fff;
-            font-size: 14px;
-            outline: none;
-            transition: all 0.3s;
-        }
-
-        select:focus, input:focus, textarea:focus {
-            border-color: var(--gold-primary);
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
-        }
-
-        .negotiation-box {
-            background: linear-gradient(145deg, #0d0d12, #050508);
-            border: 2px solid var(--gold-primary);
-            border-radius: 24px;
-            padding: 26px;
-            text-align: center;
-            margin: 24px 0 14px;
-            box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.9), 0 0 30px rgba(212, 175, 55, 0.25);
-        }
-
-        .price-val {
-            font-size: 36px;
-            font-weight: 900;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin: 8px 0;
-        }
-
-        .range-container {
-            margin-top: 20px;
-            padding-top: 18px;
-            border-top: 1px dashed rgba(212, 175, 55, 0.35);
-        }
-
-        .range-slider {
-            width: 100%;
-            accent-color: var(--gold-primary);
-            cursor: pointer;
-            height: 6px;
-            background: #222;
-            border-radius: 3px;
-        }
-
-        .deal-status {
-            font-size: 13px;
-            font-weight: 700;
-            padding: 6px 18px;
-            border-radius: 20px;
-            display: inline-block;
-            margin-top: 10px;
-        }
+        .negotiation-box { background: linear-gradient(145deg, #0d0d12, #050508); border: 2px solid var(--gold-primary); border-radius: 24px; padding: 24px; text-align: center; }
+        .price-val { font-size: 34px; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .range-slider { width: 100%; accent-color: var(--gold-primary); cursor: pointer; height: 6px; margin: 15px 0 10px; }
+        .deal-status { font-size: 12.5px; font-weight: 700; padding: 5px 16px; border-radius: 20px; display: inline-block; margin-top: 8px; }
         .deal-accepted { background: rgba(37, 211, 102, 0.2); color: #25d366; border: 1px solid #25d366; }
         .deal-negotiate { background: rgba(212, 175, 55, 0.2); color: var(--gold-light); border: 1px solid var(--gold-primary); }
 
-        .btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            width: 100%;
-            padding: 18px;
-            border-radius: 16px;
-            font-size: 16px;
-            font-weight: 700;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: all 0.35s ease;
-        }
-
-        .btn-wa { background: linear-gradient(135deg, #25d366, #128c7e); color: #fff; box-shadow: 0 10px 30px rgba(37, 211, 102, 0.35); }
-        .btn-call { background: var(--gold-gradient); color: #020204; box-shadow: 0 10px 30px rgba(212, 175, 55, 0.35); }
+        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 16px; border-radius: 16px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; transition: 0.3s; }
+        .btn-wa { background: linear-gradient(135deg, #25d366, #128c7e); color: #fff; box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3); }
+        .btn-call { background: var(--gold-gradient); color: #020204; box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3); }
         .btn-ai { background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark)); color: #000; font-weight: 800; }
 
-        .floating-actions {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: calc(100% - 32px);
-            max-width: 568px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-            z-index: 999;
-            background: rgba(3, 3, 5, 0.92);
-            backdrop-filter: blur(25px);
-            padding: 10px;
-            border-radius: 50px;
-            border: 1px solid var(--border-glow);
-        }
-
-        .floating-btn {
-            padding: 14px;
-            border-radius: 40px;
-            font-size: 15px;
-            font-weight: 700;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        footer { text-align: center; color: var(--text-sub); font-size: 13px; margin-top: 35px; opacity: 0.8; }
+        .floating-actions { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: calc(100% - 32px); max-width: 568px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; z-index: 999; background: rgba(3, 3, 5, 0.92); backdrop-filter: blur(25px); padding: 10px; border-radius: 50px; border: 1px solid var(--border-glow); }
+        .floating-btn { padding: 12px; border-radius: 40px; font-size: 14px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 6px; }
+        footer { text-align: center; color: var(--text-sub); font-size: 13px; margin-top: 30px; opacity: 0.8; }
     </style>
 </head>
 <body>
 
-    <!-- Splash Screen Launch -->
     <div id="splash-screen">
-        <div class="splash-logo-wrap">
-            <div class="splash-logo">☀️</div>
-        </div>
+        <div class="splash-logo-wrap"><div class="splash-logo">☀️</div></div>
         <div class="splash-title">شـمـس</div>
         <div class="splash-subtitle">جاري تحضير تجربة النقل والخدمات الذكية...</div>
-        <div class="loader-bar-bg">
-            <div class="loader-bar-fill"></div>
-        </div>
+        <div class="loader-bar-bg"><div class="loader-bar-fill"></div></div>
     </div>
 
     <div class="container">
         <!-- Hero Header -->
         <div class="luxury-card hero-header">
-            <div class="brand-logo-wrap">
-                <div class="brand-logo">☀️</div>
-            </div>
+            <div class="brand-logo-wrap"><div class="brand-logo">☀️</div></div>
             <h1>شـمـس</h1>
             <p>الخدمة الملكية المتكاملة للتوصيل والذكاء الاصطناعي | درعا وريفها</p>
-            <div class="vip-badge">✨ الأسرع والأكثر تطوراً في المحافظة</div>
+            <div class="vip-badge">✨ معيار الفخامة المطلقة في قطاع الخدمات</div>
         </div>
 
-        <!-- Fully Dynamic Smart AI Assistant -->
+        <!-- Live Stats -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="number">+1,500</div>
+                <div class="label">طرد تم تسليمه</div>
+            </div>
+            <div class="stat-item">
+                <div class="number">100%</div>
+                <div class="label">تغطية المحافظة</div>
+            </div>
+            <div class="stat-item">
+                <div class="number">🚀 فائق السرعة</div>
+                <div class="label">استجابة فورية</div>
+            </div>
+        </div>
+
+        <!-- Comprehensive Multi-Option AI Assistant -->
         <div class="luxury-card">
-            <div class="section-title">🤖 مساعد شمس الذكي (مطبخ، صيدلية، ومشتريات عامة)</div>
+            <div class="section-title">🤖 مساعد شمس الذكي الشامل (طبخ، أدوية، وحوائج)</div>
             <div class="ai-assistant-box">
-                <p style="font-size: 13px; color: var(--text-sub); margin-bottom: 12px;">اكتب اسم أي طبخة (كبسة، بيتزا، ملوخية...) أو أي دواء أو أي غرض لتأمين المكونات وتوصيلها فوراً:</p>
+                <p style="font-size: 13px; color: var(--text-sub); margin-bottom: 12px;">اكتب اسم أي أكلة (مقلوبة، كبسة، ملوخية، شاورما، بيتزا...) أو أي دواء (بنادول، سيتامول، مسكنات...) أو أي غرض وسيعطيك المكونات وتوصيلها:</p>
                 <div class="form-group" style="margin-bottom: 12px;">
-                    <input type="text" id="aiInput" placeholder="أدخل اسم الطبخة أو الدواء هنا (مثال: كبسة دجاج، ملوخية، بنادول...)">
+                    <input type="text" id="aiInput" placeholder="اكتب اسم الطبخة أو الدواء أو الطلب هنا...">
                 </div>
-                <button class="btn btn-ai" onclick="runSmartAI()">✨ تحليل الأغراض والمكونات تلقائياً</button>
+                <button class="btn btn-ai" onclick="runComprehensiveAI()">✨ تحليل ومطابقة الطلب فوراً</button>
                 
                 <div id="aiResult" class="ai-result-card">
-                    <h4 id="aiTitle">📌 النتيجة والمكونات المطلوبة:</h4>
-                    <p id="aiBody"></p>
-                    <button class="btn btn-wa" style="margin-top: 14px; padding: 12px;" onclick="orderAiItems()">🛒 طلب توصيل هذه المواد الآن عبر الواتساب</button>
+                    <h4 id="aiTitle" style="color: var(--gold-light); margin-bottom: 8px;">📌 تفاصيل الطلب والمكونات:</h4>
+                    <p id="aiBody" style="font-size: 13.5px; line-height: 1.7;"></p>
+                    <button class="btn btn-wa" style="margin-top: 14px; padding: 12px;" onclick="orderAiItems()">🛒 طلب تأمين هذه المواد وتوصيلها فوراً</button>
                 </div>
             </div>
         </div>
 
-        <!-- Comprehensive Services Showcase -->
+        <!-- Services Showcase -->
         <div class="luxury-card">
-            <div class="section-title">👑 باقة خدماتنا الملكية الحصرية</div>
+            <div class="section-title">👑 خدماتنا الملكية المتكاملة</div>
             <div class="services-grid">
                 <div class="service-item">
                     <div class="service-icon">📦</div>
                     <div class="service-content">
                         <h3>توصيل الطرود والشحنات VIP</h3>
-                        <p>نقل فائق السرعة والأمان للشحنات الشخصية ومشتريات المتاجر من الباب إلى الباب بعناية فائقة.</p>
+                        <p>نقل آمن وفائق السرعة للشحنات الشخصية ومشتريات المتاجر من الباب إلى الباب.</p>
                     </div>
                 </div>
                 <div class="service-item">
                     <div class="service-icon">🍳</div>
                     <div class="service-content">
-                        <h3>تأمين مقادير الطبخ والمشتريات</h3>
-                        <p>استعن بمساعدنا الذكي أعلاه لجلب كافة مكونات وجبتك المفضلة وتوصيلها طازجة إلى منزلك.</p>
+                        <h3>تأمين مقادير الطبخ والوجبات</h3>
+                        <p>تأمين كافة مكونات طعامك المفضلة وتوصيلها طازجة ومبوبة عبر أسطولنا.</p>
                     </div>
                 </div>
                 <div class="service-item">
                     <div class="service-icon">💊</div>
                     <div class="service-content">
-                        <h3>تأمين الأدوية من الصيدليات</h3>
-                        <p>تأمين الوصفات الطبية والأدوية الهامة من الصيدليات المعتمدة بسرعة وخصوصية تامة.</p>
+                        <h3>تأمين الأدوية والمستلزمات الطبية</h3>
+                        <p>تأمين الأدوية والوصفات الطبية من الصيدليات المعتمدة بخصوصية وسرعة تامة.</p>
                     </div>
                 </div>
                 <div class="service-item">
                     <div class="service-icon">🌾</div>
                     <div class="service-content">
                         <h3>خدمة القرى والريف المحيط</h3>
-                        <p>ربط ملكي مباشر ومستمر بين مدينة درعا وكافة مدن وبلدات الريف دون أي تأخير.</p>
+                        <p>ربط مستمر وسريع بين مدينة درعا وكافة بلدات وقرى الريف دون أي تأخير.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Smart Calculator & Fleet Negotiation Widget -->
+        <!-- Fleet & Calculator -->
         <div class="luxury-card">
             <div class="section-title">🚗 الأسطول الملكي وحاسبة السعر الذكية</div>
-            
             <div class="form-group">
-                <label>اختر مركبة الأسطول المناسبة لطلبتك:</label>
+                <label>اختر مركبة الأسطول:</label>
                 <div class="vehicle-options">
                     <div class="vehicle-btn" onclick="setVehicle(this, 0.75)">
-                        <span style="font-size:22px">🏍️</span>
+                        <span style="font-size:20px">🏍️</span>
                         <span>دراجة نارية</span>
                     </div>
                     <div class="vehicle-btn active" onclick="setVehicle(this, 1)">
-                        <span style="font-size:22px">🚕</span>
+                        <span style="font-size:20px">🚕</span>
                         <span>تاكسي فيرنا</span>
                     </div>
                     <div class="vehicle-btn" onclick="setVehicle(this, 1.45)">
-                        <span style="font-size:22px">🏎️</span>
+                        <span style="font-size:20px">🏎️</span>
                         <span>سيارة BMW</span>
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
-                <label>الوجهة أو المنطقة المستهدفة:</label>
+                <label>الوجهة أو المنطقة:</label>
                 <select id="destination" onchange="updateBasePrice()">
                     <option value="25000">درعا البلد / المحطة (داخل المدينة) - 25,000 ل.س</option>
-                    <option value="40000">اليادودة / طفس / النعيمة / صيدا (قرى قريبة) - 40,000 ل.س</option>
-                    <option value="60000">الداعورية / خربا / الغارية الشرقية والغربية - 60,000 ل.س</option>
-                    <option value="80000">إزرع / بصرى الشام / نوى / جاسم (الريف البعيد) - 80,000 ل.س</option>
+                    <option value="40000">اليادودة / طفس / النعيمة / صيدا - 40,000 ل.س</option>
+                    <option value="60000">الغارية / خربا / الداعورية - 60,000 ل.س</option>
+                    <option value="80000">إزرع / بصرى الشام / نوى / جاسم - 80,000 ل.س</option>
                 </select>
             </div>
 
@@ -561,7 +212,7 @@
                 <div id="priceNew" style="font-size: 13.5px; color: var(--gold-light); font-weight: 600;">تساوي: 250 ليرة جديدة</div>
 
                 <div class="range-container">
-                    <label for="negotiateSlider" style="font-size: 12.5px; margin-bottom: 6px; color: var(--text-sub);">اسحب لعرض السعر الذي يناسب ميزانيتك (مفاصلة فورية):</label>
+                    <label for="negotiateSlider" style="font-size: 12px; margin-bottom: 4px; color: var(--text-sub);">اسحب لتعديل السعر بحسب ميزانيتك (مفاصلة فورية):</label>
                     <input type="range" id="negotiateSlider" class="range-slider" min="15000" max="120000" step="5000" value="25000" oninput="handleNegotiation()">
                     <div id="dealStatus" class="deal-status deal-accepted">✅ السعر النظامي معتمد</div>
                 </div>
@@ -570,128 +221,90 @@
 
         <!-- Order Form -->
         <div class="luxury-card">
-            <div class="section-title">📝 طلب خدمة توصيل ملكية</div>
+            <div class="section-title">📝 إرسال الطلب إلى إدارة شمس</div>
             <div class="form-group">
-                <label>اسمك الكريم:</label>
+                <label>الاسم الكريم:</label>
                 <input type="text" id="cName" placeholder="أدخل اسمك هنا">
             </div>
             <div class="form-group">
-                <label>رقم للتواصل (الواتساب):</label>
+                <label>رقم الواتساب للتواصل:</label>
                 <input type="tel" id="cPhone" placeholder="09xxxxxxxx">
             </div>
             <div class="form-group">
-                <label>تفاصيل الطرد وعنوان الاستلام والتسليم:</label>
-                <textarea id="cDetails" rows="3" placeholder="موقع الاستلام، تفاصيل الوجهة، ونوع الطرد أو الطلب..."></textarea>
+                <label>تفاصيل العنوان والطلب:</label>
+                <textarea id="cDetails" rows="3" placeholder="موقع الاستلام، اسم الشارع، أو تفاصيل الطلب..."></textarea>
             </div>
-            <button class="btn btn-wa" onclick="submitOrder()">💬 اعتماد السعر وإرسال الطلب الفوري للواتساب</button>
+            <button class="btn btn-wa" onclick="submitOrder()">💬 اعتماد الطلب والإرسال الفوري للواتساب</button>
         </div>
 
-        <!-- Contact Support -->
-        <div class="luxury-card">
-            <div class="section-title">📞 خدمة العملاء والدعم المباشر</div>
-            <a href="https://wa.me/963997973734" class="btn btn-wa" target="_blank" style="margin-bottom: 14px;">💬 مراسلة واتساب الإدارة (0997973734)</a>
-            <a href="tel:0934964138" class="btn btn-call">📞 الاتصال المباشر بالفريق (0934964138)</a>
-        </div>
-
-        <footer>
-            جميع الحقوق محفوظة © شمس للتوصيل السريع والنقل الفاخر 2026
-        </footer>
+        <footer>جميع الحقوق محفوظة © شمس 2026</footer>
     </div>
 
-    <!-- Floating Action Buttons -->
+    <!-- Floating Actions -->
     <div class="floating-actions">
-        <a href="https://wa.me/963997973734" class="floating-btn btn-wa" target="_blank" style="border-radius: 40px;">💬 واتساب</a>
-        <a href="tel:0934964138" class="floating-btn btn-call" style="border-radius: 40px; color: #020204;">📞 اتصال</a>
+        <a href="https://wa.me/963997973734" class="floating-btn btn-wa" target="_blank">💬 واتساب</a>
+        <a href="tel:0934964138" class="floating-btn btn-call">📞 اتصال</a>
     </div>
 
     <script>
-        // Splash Screen Transition
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const splash = document.getElementById('splash-screen');
                 splash.style.opacity = '0';
                 splash.style.visibility = 'hidden';
-            }, 2200);
+            }, 2000);
         });
 
-        // Comprehensive AI Recipes & Medicine Knowledge Base
-        const aiDatabase = {
-            recipes: {
-                "مقلوبة": ["لحم أو دجاج طازج", "رز قصير مغسول", "باذنجان / زهره / بطاطا", "بهارات مقلوبة وسمنة", "مكسرات للتزيين"],
-                "كبسة": ["دجاج أو لحم غنم", "رز بسمتي طويل", "بندورة ومعجون طماطم", "بهارات كبسة وقرفة", "مكسرات وفلفل حار"],
-                "ملوخية": ["ملوخية ورق أو ناعمة", "دجاج بلدي طازج", "ثوم وكزبرة يابسة", "سمنة زبدة وثوم", "ليمون طازج"],
-                "شاكرية": ["لحم شقف طازج", "لبن رائب ونشاء", "بصل وسمنة بلدي", "رز بشعيرية", "مكسرات وسنوبر"],
-                "شيش برك": ["عجين طازج", "لحم مفروم وبصل", "لبن مطبوخ وثوم", "كزبرة يابسة وسمنة", "رز بالشعيرية"],
-                "بيتزا": ["طحين وخميرة وعجين", "جبنة موزاريلا وشيدر", "صلصة بيتزا وطماطم", "زيتون أسود وفلفل ألوان", "فطر أو صوصج"],
-                "برغر": ["لحم برغر طازج أو دجاج", "خبز برغر سمسم", "جبن شيدر شرائح", "خس وبندورة وصوص", "بطاطا مقلية"],
-                "شاورما": ["دجاج أو لحم مسحب", "خبز صاج أو سياحي", "ثومية ومخلل خيار", "بطاطا وزيت زيتون"],
-                "مجدرة": ["عدس بني مغسول", "برغل أو رز", "بصل مقلي مقرمش", "زيت زيتون بلدي", "لبن وسلطة"],
-                "فتوش": ["خس وبندورة وخيار", "نعنع وبقدونس وفجل", "خبز محمص مقرمش", "سماق ودبس رمان", "زيت زيتون وليمون"]
-            },
-            medicines: {
-                "سيتامول": "مسكن آلام خفيف ومخفض حرارة متوفر بدون وصفة.",
-                "بنادول": "مسكن آلام عام ومخفض حرارة آمن.",
-                "بروفين": "مضاد التهاب ومسكن آلام المفاصل والأسنان.",
-                "فيتامين": "مكملات غذائية ومقويات عامة للجسم.",
-                "التهاب": "مضادات حيوية ومسكنات (تتطلب وصفة طبية من الصيدلية)."
-            }
+        // 🧠 Comprehensive Smart Knowledge Base (Recipes & Medicines & General Goods)
+        const knowledgeBase = {
+            "مقلوبة": "• لحم أو دجاج طازج\n• رز مغسول\n• باذنجان / زهره / بطاطا\n• بهارات مشكلة وسمنة بلدية\n• مكسرات للتزيين",
+            "كبسة": "• دجاج أو لحم غنم\n• رز بسمتي طويل\n• بهارات كبسة وقرفة ولومي\n• بندورة وبصل ومعجون طماطم\n• مكسرات وفلفل",
+            "ملوخية": "• ملوخية ورق أو ناعمة\n• دجاج طازج\n• ثوم وكزبرة يابسة\n• سمنة وليمون طازج",
+            "شاكرية": "• لحم شقف طازج\n• لبن رائب ونشاء وثوم\n• بصل وسمنة بلدي\n• رز بشعيرية",
+            "شاورما": "• دجاج مسحب متبل\n• خبز صاج أو سياحي\n• ثومية ومخلل خيار\n• بطاطا مقلية وزيت",
+            "بيتزا": ["طحين وخميرة وزيت زيتون", "جبنة موزاريلا وشيدر", "صلصة طماطم وأعشاب", "زيتون وفطر وفلفل ألوان"],
+            "برغر": ["لحم أو دجاج برغر متبل", "خبز برغر سمسم", "جبن شيدر شرائح", "خس وبندورة وصوص خاص"],
+            "سيتامول": "• مسكن آلام خفيف ومخفض حرارة آمن.\n• متوفر بدون وصفة طبية.",
+            "بنادول": "• مسكن آلام عام وصداع ومخفض حرارة.\n• متوفر بجميع التركيبات.",
+            "بروفين": "• مضاد التهاب ومسكن قوي للمفاصل والأسنان.",
+            "فيتامين": "• مقويات عامة ومكملات غذائية لصحة الجسم.",
+            "دواء": "• يرجى إرسال اسم الدواء بدقة أو صورة الوصفة الطبية ليقوم المندوب بتأمينه فوراً من الصيدلية."
         };
 
         let lastAiQuery = "";
 
-        function runSmartAI() {
+        function runComprehensiveAI() {
             const query = document.getElementById('aiInput').value.trim();
             const resBox = document.getElementById('aiResult');
             const title = document.getElementById('aiTitle');
             const body = document.getElementById('aiBody');
 
             if(!query) {
-                alert('الرجاء كتابة اسم الطبخة أو الدواء أو المشتريات أولاً.');
+                alert('الرجاء كتابة اسم الطبخة أو الدواء أو السلعة أولاً.');
                 return;
             }
 
             lastAiQuery = query;
             resBox.style.display = 'block';
 
-            // Check Recipes Database
-            let foundRecipe = null;
-            for(let key in aiDatabase.recipes) {
-                if(query.includes(key)) {
-                    foundRecipe = { name: key, items: aiDatabase.recipes[key] };
-                    break;
-                }
-            }
+            // Search in knowledge base
+            let foundKey = Object.keys(knowledgeBase).find(key => query.includes(key));
 
-            if(foundRecipe) {
-                title.innerText = `🍳 مقادير وجبة (${foundRecipe.name}):`;
-                let itemsList = foundRecipe.items.map(item => `• ${item}`).join('<br>');
-                body.innerHTML = `${itemsList}<br><br><b>💡 مندوب شمس جاهز لشراء كافة هذه المقادير وتوصيلها فوراً إلى منزلكم!</b>`;
-                return;
+            if(foundKey) {
+                let details = knowledgeBase[foundKey];
+                if(Array.isArray(details)) details = details.map(i => `• ${i}`).join('\n');
+                
+                title.innerText = `📌 مكونات وتفاصيل (${foundKey}):`;
+                body.innerHTML = details.replace(/\n/g, '<br>') + `<br><br><b>💡 مندوب شمس جاهز لشراء هذه المواد وتوصيلها فوراً لمنزلك!</b>`;
+            } else {
+                title.innerText = `📝 الطلب الخاص بـ (${query}):`;
+                body.innerHTML = `• المواد والمستلزمات اللازمة لـ (${query})<br>• خدمة الشراء والتأمين الفوري من المتاجر<br><br><b>💡 فريق شمس مستعد لجلب كافة متطلبات (${query}) وتوصيلها بدقة وسرعة!</b>`;
             }
-
-            // Check Medicines Database
-            let foundMed = null;
-            for(let key in aiDatabase.medicines) {
-                if(query.includes(key)) {
-                    foundMed = { name: key, info: aiDatabase.medicines[key] };
-                    break;
-                }
-            }
-
-            if(foundMed) {
-                title.innerText = `💊 الاستفسار الصيدلاني عن (${foundMed.name}):`;
-                body.innerHTML = `${foundMed.info}<br><br><b>💡 مندوب شمس سيقوم بتأمين الدواء من الصيدلية وإحضاره لك فوراً.</b>`;
-                return;
-            }
-
-            // General Dynamic Generator for Any Other Item
-            title.innerText = `📝 المقادير والتفاصيل التقديرية لـ (${query}):`;
-            body.innerHTML = `• المواد الأساسية الخاصة بـ (${query})<br>• المستلزمات الطازجة والمكملات<br>• خدمة الشراء والتغليف السريع<br><br><b>💡 فريق شمس مستعد لتأمين كافة طلبات (${query}) فوراً وشحنها لمنزلك!</b>`;
         }
 
         function orderAiItems() {
             const detailsBox = document.getElementById('cDetails');
-            detailsBox.value = `طلب شراء وتوصيل عبر المساعد الذكي: (${lastAiQuery})`;
+            detailsBox.value = `طلب تأمين وتوصيل عبر المساعد الذكي: (${lastAiQuery})`;
             detailsBox.scrollIntoView({ behavior: 'smooth' });
         }
 
@@ -708,8 +321,7 @@
         }
 
         function updateBasePrice() {
-            const selectElem = document.getElementById('destination');
-            const baseVal = parseInt(selectElem.value);
+            const baseVal = parseInt(document.getElementById('destination').value);
             baseStandardPrice = Math.round(baseVal * vehicleMultiplier);
 
             const slider = document.getElementById('negotiateSlider');
@@ -721,8 +333,7 @@
         }
 
         function handleNegotiation() {
-            const sliderVal = parseInt(document.getElementById('negotiateSlider').value);
-            updateDisplay(sliderVal);
+            updateDisplay(parseInt(document.getElementById('negotiateSlider').value));
         }
 
         function updateDisplay(price) {
@@ -735,10 +346,10 @@
 
             if (diff >= 0) {
                 statusBox.className = 'deal-status deal-accepted';
-                statusBox.innerHTML = '✅ عرض ممتاز ومقبول فوراً من الإدارة';
+                statusBox.innerHTML = '✅ عرض ممتاز ومقبول فوراً';
             } else {
                 statusBox.className = 'deal-status deal-negotiate';
-                statusBox.innerHTML = '🤝 مفاصلة مقبولة (ضمن حدود التفاوض الودي)';
+                statusBox.innerHTML = '🤝 مفاصلة مقبولة (ضمن التفاوض الودي)';
             }
         }
 
@@ -751,18 +362,11 @@
             const newCurrText = document.getElementById('priceNew').innerText;
 
             if(!name || !phone || !details) {
-                alert('الرجاء إدخال اسمك ورقم الهاتف وتفاصيل الطلب أولاً.');
+                alert('الرجاء إدخال الاسم ورقم الهاتف والتفاصيل.');
                 return;
             }
 
-            const msg = `👑 طلب توصيل جديد - الخدمة الملكية شمس:\n\n` +
-                        `👤 الاسم: ${name}\n` +
-                        `📞 الرقم: ${phone}\n` +
-                        `🚗 المركبة المختارة: ${selectedVehicleName}\n` +
-                        `📍 الوجهة: ${destName}\n` +
-                        `💰 السعر المقترح (بالمفاصلة): ${currentPrice} (${newCurrText})\n` +
-                        `📝 التفاصيل: ${details}`;
-
+            const msg = `👑 طلب توصيل جديد - شمس:\n\n👤 الاسم: ${name}\n📞 الرقم: ${phone}\n🚗 المركبة: ${selectedVehicleName}\n📍 الوجهة: ${destName}\n💰 السعر: ${currentPrice} (${newCurrText})\n📝 التفاصيل: ${details}`;
             window.open(`https://wa.me/963997973734?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
