@@ -7,6 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <!-- Leaflet CSS for Interactive Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         :root {
             --bg-base: #030305;
@@ -50,7 +52,7 @@
             padding: 24px 16px;
         }
 
-        /* Luxury Card with Glow & 3D Tilt feel */
+        /* Luxury Card */
         .luxury-card {
             background: var(--card-glass);
             backdrop-filter: blur(25px);
@@ -190,6 +192,16 @@
             font-weight: 600;
         }
 
+        /* Map Container */
+        .map-container {
+            width: 100%;
+            height: 220px;
+            border-radius: 16px;
+            border: 1px solid var(--border-glow);
+            margin-bottom: 16px;
+            z-index: 1;
+        }
+
         /* Services Grid */
         .services-grid {
             display: grid;
@@ -230,8 +242,8 @@
         /* Fleet Options (Vehicle Selection) */
         .vehicle-options {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
             margin-bottom: 20px;
         }
 
@@ -239,10 +251,10 @@
             background: rgba(8, 8, 12, 0.95);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 16px;
-            padding: 16px 12px;
+            padding: 14px 8px;
             text-align: center;
             cursor: pointer;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
             color: var(--text-sub);
             transition: all 0.35s ease;
@@ -250,11 +262,11 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .vehicle-btn .fleet-icon {
-            font-size: 24px;
+            font-size: 22px;
         }
 
         .vehicle-btn.active {
@@ -444,7 +456,7 @@
             </div>
             <h1>شـمـس</h1>
             <p>الخدمة الملكية المتكاملة للتوصيل والنقل السريع | درعا وريفها</p>
-            <div class="vip-badge">✨ الأسطول الملكي والنقل الفاخر</div>
+            <div class="vip-badge">✨ نظام الخريطة الذكية والأسطول الملكي</div>
         </div>
 
         <!-- Live Stats Bar -->
@@ -461,6 +473,13 @@
                 <div class="number">🚀 فائق السرعة</div>
                 <div class="label">استجابة فورية</div>
             </div>
+        </div>
+
+        <!-- Live Map Tracker Widget -->
+        <div class="luxury-card">
+            <div class="section-title">🗺️ خريطة التتبع المباشر (درعا)</div>
+            <p style="font-size: 12px; color: var(--text-sub); margin-bottom: 12px;">تحديد مواقع مناديب الأسطول الملكي في المحطة ودرعا البلد:</p>
+            <div id="daraaMap" class="map-container"></div>
         </div>
 
         <!-- Services Overview -->
@@ -492,13 +511,17 @@
             <div class="form-group">
                 <label>اختر مركبة الأسطول المناسبة:</label>
                 <div class="vehicle-options">
+                    <div class="vehicle-btn" onclick="setVehicle(this, 0.75)">
+                        <span class="fleet-icon">🏍️</span>
+                        <span>دراجة نارية</span>
+                    </div>
                     <div class="vehicle-btn active" onclick="setVehicle(this, 1)">
                         <span class="fleet-icon">🚕</span>
-                        <span>تاكسي صفراء (فيرنا)</span>
+                        <span>تاكسي فيرنا</span>
                     </div>
                     <div class="vehicle-btn" onclick="setVehicle(this, 1.45)">
                         <span class="fleet-icon">🏎️</span>
-                        <span>سيارة خاصة (BMW مريحة)</span>
+                        <span>سيارة BMW</span>
                     </div>
                 </div>
             </div>
@@ -573,10 +596,27 @@
         <a href="tel:0934964138" class="floating-btn btn-call" style="border-radius: 40px; color: #030305;">📞 اتصال</a>
     </div>
 
+    <!-- Leaflet JS for Map -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
+        // Initialize Daraa Map
+        const map = L.map('daraaMap').setView([32.6186, 36.1042], 13);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{z}.png', {
+            maxZoom: 19,
+            attribution: '&copy; OpenStreetMap & CARTO'
+        }).addTo(map);
+
+        // Add Markers for Shams Hubs
+        L.marker([32.6186, 36.1042]).addTo(map)
+            .bindPopup('<b>مكتب شمس الرئيسي - درعا المحطة</b><br>نقطة انطلاق الأسرع في المحافظة.')
+            .openPopup();
+
+        L.marker([32.6130, 36.1090]).addTo(map)
+            .bindPopup('<b>فرع درعا البلد</b><br>خدمة التوصيل السريع متاحة هنا.');
+
         let vehicleMultiplier = 1;
         let baseStandardPrice = 25000;
-        let selectedVehicleName = "تاكسي صفراء (فيرنا)";
+        let selectedVehicleName = "تاكسي فيرنا";
 
         function setVehicle(btn, multiplier) {
             document.querySelectorAll('.vehicle-btn').forEach(b => b.classList.remove('active'));
