@@ -35,63 +35,72 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
         }
         .logo-box {
-            width: 90px;
-            height: 90px;
-            margin: 0 auto 20px;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
             background: linear-gradient(135deg, #f59e0b, #d97706);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 40px;
+            font-size: 36px;
             box-shadow: 0 0 25px rgba(245, 158, 11, 0.4);
         }
         h1 {
-            font-size: 26px;
-            margin-bottom: 8px;
+            font-size: 24px;
+            margin-bottom: 6px;
             color: #f3f4f6;
-            letter-spacing: 0.5px;
         }
         p.subtitle {
-            font-size: 14px;
+            font-size: 13px;
             color: #9ca3af;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
-        .features {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 25px;
-            background: rgba(0, 0, 0, 0.2);
-            padding: 12px;
-            border-radius: 14px;
+        .form-group {
+            margin-bottom: 14px;
+            text-align: right;
         }
-        .feature-item {
-            font-size: 12px;
-            color: #d1d5db;
-        }
-        .feature-item span {
+        label {
             display: block;
-            font-size: 16px;
-            font-weight: bold;
-            color: #f59e0b;
+            font-size: 13px;
+            color: #d1d5db;
+            margin-bottom: 6px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        input:focus, textarea:focus {
+            border-color: #f59e0b;
         }
         .btn {
             display: block;
             width: 100%;
             padding: 14px;
-            margin-bottom: 12px;
-            border-radius: 14px;
+            margin-top: 15px;
+            border-radius: 12px;
             font-size: 16px;
             font-weight: bold;
             text-decoration: none;
-            transition: all 0.3s ease;
             cursor: pointer;
             border: none;
+            transition: all 0.3s ease;
         }
         .btn-whatsapp {
             background: linear-gradient(135deg, #25D366, #128C7E);
             color: white;
             box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+        }
+        .btn-whatsapp:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(37, 211, 102, 0.5);
         }
         .footer {
             margin-top: 20px;
@@ -105,22 +114,53 @@
     <div class="container">
         <div class="logo-box">☀️</div>
         <h1>شمس للشحن</h1>
-        <p class="subtitle">خدمات النقل والترحال والتوصيل السريع</p>
+        <p class="subtitle">أدخل بيانات الطلب للإرسال عبر الواتساب</p>
 
-        <div class="features">
-            <div class="feature-item"><span>⚡</span> سرعة بالاداء</div>
-            <div class="feature-item"><span>🛡️</span> أمان وموثوقية</div>
-            <div class="feature-item"><span>📍</span> تغطية شاملة</div>
+        <div class="form-group">
+            <label>👤 اسم العميل:</label>
+            <input type="text" id="clientName" placeholder="أدخل اسمك الكريم">
         </div>
 
-        <a href="https://wa.me/+963900000000?text=مرحباً،%20أريد%20طلب%20خدمة%20توصيل" class="btn btn-whatsapp" target="_blank">
-            💬 اطلب عبر الواتساب الآن
-        </a>
+        <div class="form-group">
+            <label>📍 عنوان الاستلام / التسليم:</label>
+            <input type="text" id="clientAddress" placeholder="مثال: درعا - الحي...">
+        </div>
+
+        <div class="form-group">
+            <label>📦 تفاصيل الطلب أو الشحنة:</label>
+            <textarea id="clientDetails" rows="3" placeholder="اكتب تفاصيل الطلب هنا..."></textarea>
+        </div>
+
+        <button type="button" class="btn btn-whatsapp" onclick="sendToWhatsApp()">
+            💬 إرسال الطلب عبر الواتساب
+        </button>
 
         <div class="footer">
             جميع الحقوق محفوظة © شمس 2026
         </div>
     </div>
+
+    <script>
+        function sendToWhatsApp() {
+            var name = document.getElementById('clientName').value;
+            var address = document.getElementById('clientAddress').value;
+            var details = document.getElementById('clientDetails').value;
+
+            if(!name || !address) {
+                alert('الرجاء إدخال الاسم والعنوان على الأقل');
+                return;
+            }
+
+            var text = "مرحباً، أريد طلب خدمة توصيل من تطبيق شمس:%0a" +
+                       "▪️ الاسم: " + name + "%0a" +
+                       "▪️ العنوان: " + address + "%0a" +
+                       "▪️ التفاصيل: " + details;
+
+            // استبدل الرقم أدناه برقم الواتساب الخاص بك إذا أردت، أو اتركه يفتح رسالة عامة
+            var url = "https://wa.me/?text=" + text;
+            window.open(url, '_blank');
+        }
+    </script>
 
 </body>
 </html>
