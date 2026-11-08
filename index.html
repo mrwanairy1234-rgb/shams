@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شمس | منصة الطبخ والخدمات الملكية - درعا</title>
+    <title>شمس | الخدمة الملكية للتوصيل والنقل السريع - درعا</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-base: #020204;
+            --bg-surface: #0a0a0f;
             --card-glass: rgba(14, 14, 20, 0.92);
             --gold-light: #fff1b8;
             --gold-primary: #d4af37;
@@ -19,107 +20,230 @@
             --text-main: #ffffff;
             --text-sub: #b8b8cc;
             --border-glow: rgba(212, 175, 55, 0.35);
+            --shadow-gold: rgba(212, 175, 55, 0.2);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
-        body { background-color: var(--bg-base); color: var(--text-main); line-height: 1.8; padding-bottom: 140px; }
-
-        /* Splash Screen */
-        #splash-screen { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #020204; z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; transition: opacity 1s, visibility 1s; }
-        .splash-logo-wrap { width: 120px; height: 120px; border: 2px solid var(--gold-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 50px rgba(212, 175, 55, 0.5); margin-bottom: 20px; }
-        .splash-title { font-size: 38px; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
-        .container { max-width: 600px; margin: 0 auto; padding: 20px 16px; }
-        .luxury-card { background: var(--card-glass); backdrop-filter: blur(20px); border: 1px solid var(--border-glow); border-radius: 28px; padding: 28px 22px; margin-bottom: 24px; box-shadow: 0 25px 60px rgba(0,0,0,0.9); }
-
-        .hero-header { text-align: center; padding: 30px 10px; }
-        .hero-header h1 { font-size: 40px; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background-color: var(--bg-base); color: var(--text-main); line-height: 1.8; padding-bottom: 140px; overflow-x: hidden; background-image: radial-gradient(circle at 15% 15%, rgba(212, 175, 55, 0.12) 0%, transparent 40%), radial-gradient(circle at 50% 50%, rgba(10, 10, 15, 1) 0%, rgba(2, 2, 4, 1) 100%); background-attachment: fixed; }
         
-        .section-title { color: var(--gold-light); font-size: 19px; font-weight: 700; margin-bottom: 18px; border-bottom: 1px solid rgba(212, 175, 55, 0.2); padding-bottom: 10px; }
+        #splash-screen { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #020204; z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; transition: opacity 1s cubic-bezier(0.165, 0.84, 0.44, 1), visibility 1s; }
+        .splash-logo-wrap { position: relative; width: 130px; height: 130px; margin-bottom: 24px; background: radial-gradient(circle, rgba(212, 175, 55, 0.35) 0%, rgba(10, 10, 15, 0.98) 75%); border: 2px solid var(--gold-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 60px rgba(212, 175, 55, 0.5); animation: logo-glow 2s infinite alternate ease-in-out; }
+        @keyframes logo-glow { 0% { transform: scale(0.95); box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); } 100% { transform: scale(1.05); box-shadow: 0 0 70px rgba(212, 175, 55, 0.7); } }
+        .splash-logo { font-size: 65px; }
+        .splash-title { font-size: 40px; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 3px; margin-bottom: 8px; }
+        .splash-subtitle { color: var(--text-sub); font-size: 14px; margin-bottom: 30px; }
+        .loader-bar-bg { width: 220px; height: 4px; background: rgba(255, 255, 255, 0.08); border-radius: 4px; overflow: hidden; border: 1px solid rgba(212, 175, 55, 0.2); }
+        .loader-bar-fill { width: 0%; height: 100%; background: var(--gold-gradient); box-shadow: 0 0 15px var(--gold-primary); animation: loadProgress 2.2s ease-in-out forwards; }
+        @keyframes loadProgress { 0% { width: 0%; } 100% { width: 100%; } }
 
-        /* AI Platform Box */
-        .ai-assistant-box { background: #08080c; border: 1.5px solid var(--gold-primary); border-radius: 20px; padding: 20px; }
-        .ai-result-card { display: none; background: rgba(18, 18, 26, 0.95); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 16px; padding: 18px; margin-top: 16px; font-size: 14px; line-height: 1.8; }
+        .container { max-width: 600px; margin: 0 auto; padding: 24px 16px; }
+        .luxury-card { background: var(--card-glass); backdrop-filter: blur(30px); border: 1px solid var(--border-glow); border-radius: 32px; padding: 34px 26px; margin-bottom: 28px; box-shadow: 0 35px 80px rgba(0, 0, 0, 0.95); transition: all 0.4s ease; }
+        .luxury-card:hover { border-color: var(--gold-primary); transform: translateY(-4px); }
         
-        .recipe-section { margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px dashed rgba(212, 175, 55, 0.2); }
-        .recipe-section h5 { color: var(--gold-light); font-size: 15px; margin-bottom: 6px; }
+        .hero-header { text-align: center; padding: 40px 20px; }
+        .brand-logo-wrap { width: 110px; height: 110px; margin: 0 auto 18px; background: radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, rgba(10, 10, 15, 0.95) 75%); border: 2px solid var(--gold-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 45px rgba(212, 175, 55, 0.4); }
+        .brand-logo { font-size: 55px; }
+        .hero-header h1 { font-size: 46px; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .vip-badge { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(10, 10, 15, 0.95)); color: var(--gold-light); border: 1px solid var(--gold-primary); padding: 8px 24px; border-radius: 40px; font-size: 13px; font-weight: 700; margin-top: 18px; }
 
-        .form-group { margin-bottom: 16px; }
-        label { display: block; margin-bottom: 6px; font-size: 13px; color: var(--gold-light); }
-        input, select, textarea { width: 100%; padding: 14px; background: #050508; border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 14px; color: #fff; font-size: 14px; outline: none; }
+        .section-title { color: var(--gold-light); font-size: 20px; font-weight: 700; margin-bottom: 20px; border-bottom: 1px solid rgba(212, 175, 55, 0.25); padding-bottom: 12px; display: flex; align-items: center; gap: 10px; }
 
-        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 16px; border-radius: 14px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; }
-        .btn-wa { background: linear-gradient(135deg, #25d366, #128c7e); color: #fff; }
-        .btn-ai { background: var(--gold-gradient); color: #000; font-weight: 800; }
+        /* Stats Bar */
+        .stats-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; background: rgba(8, 8, 12, 0.95); border: 1px solid var(--border-glow); border-radius: 20px; padding: 18px 10px; margin-bottom: 28px; text-align: center; }
+        .stat-item .number { font-size: 20px; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .stat-item .label { font-size: 11px; color: var(--text-sub); margin-top: 4px; font-weight: 600; }
 
-        .floating-actions { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: calc(100% - 32px); max-width: 568px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; z-index: 999; background: rgba(3, 3, 5, 0.95); padding: 8px; border-radius: 40px; border: 1px solid var(--border-glow); }
-        .floating-btn { padding: 12px; border-radius: 30px; font-size: 14px; font-weight: 700; text-decoration: none; text-align: center; }
+        /* AI Assistant Box */
+        .ai-assistant-box { background: linear-gradient(145deg, #0d0d14, #050508); border: 1.5px solid var(--gold-primary); border-radius: 24px; padding: 22px; }
+        .ai-result-card { display: none; background: rgba(18, 18, 26, 0.95); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 18px; padding: 18px; margin-top: 16px; font-size: 14px; color: #fff; line-height: 1.7; }
+
+        .services-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+        .service-item { background: linear-gradient(145deg, rgba(16, 16, 24, 0.95), rgba(6, 6, 9, 0.95)); border: 1px solid rgba(212, 175, 55, 0.18); border-radius: 18px; padding: 18px; display: flex; align-items: flex-start; gap: 14px; }
+        .service-icon { font-size: 28px; background: rgba(212, 175, 55, 0.1); width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(212, 175, 55, 0.3); flex-shrink: 0; }
+        .service-content h3 { color: var(--gold-light); font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+        .service-content p { color: var(--text-sub); font-size: 13px; }
+
+        .vehicle-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
+        .vehicle-btn { background: rgba(8, 8, 12, 0.95); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 14px 6px; text-align: center; cursor: pointer; font-size: 12px; font-weight: 700; color: var(--text-sub); display: flex; flex-direction: column; align-items: center; gap: 6px; }
+        .vehicle-btn.active { border-color: var(--gold-primary); background: linear-gradient(135deg, rgba(212, 175, 55, 0.25), rgba(14, 14, 20, 0.95)); color: var(--gold-light); box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+
+        .form-group { margin-bottom: 18px; }
+        label { display: block; margin-bottom: 8px; font-size: 13px; color: var(--gold-light); font-weight: 600; }
+        select, input, textarea { width: 100%; padding: 15px; background: rgba(6, 6, 9, 0.95); border: 1px solid rgba(212, 175, 55, 0.28); border-radius: 16px; color: #fff; font-size: 14px; outline: none; }
+
+        .negotiation-box { background: linear-gradient(145deg, #0d0d12, #050508); border: 2px solid var(--gold-primary); border-radius: 24px; padding: 24px; text-align: center; }
+        .price-val { font-size: 34px; font-weight: 900; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .range-slider { width: 100%; accent-color: var(--gold-primary); cursor: pointer; height: 6px; margin: 15px 0 10px; }
+        .deal-status { font-size: 12.5px; font-weight: 700; padding: 5px 16px; border-radius: 20px; display: inline-block; margin-top: 8px; }
+        .deal-accepted { background: rgba(37, 211, 102, 0.2); color: #25d366; border: 1px solid #25d366; }
+        .deal-negotiate { background: rgba(212, 175, 55, 0.2); color: var(--gold-light); border: 1px solid var(--gold-primary); }
+
+        .btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 16px; border-radius: 16px; font-size: 15px; font-weight: 700; border: none; cursor: pointer; transition: 0.3s; }
+        .btn-wa { background: linear-gradient(135deg, #25d366, #128c7e); color: #fff; box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3); }
+        .btn-call { background: var(--gold-gradient); color: #020204; box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3); }
+        .btn-ai { background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark)); color: #000; font-weight: 800; }
+
+        .floating-actions { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: calc(100% - 32px); max-width: 568px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; z-index: 999; background: rgba(3, 3, 5, 0.92); backdrop-filter: blur(25px); padding: 10px; border-radius: 50px; border: 1px solid var(--border-glow); }
+        .floating-btn { padding: 12px; border-radius: 40px; font-size: 14px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 6px; }
+        footer { text-align: center; color: var(--text-sub); font-size: 13px; margin-top: 30px; opacity: 0.8; }
     </style>
 </head>
 <body>
 
     <div id="splash-screen">
-        <div class="splash-logo-wrap"><div style="font-size: 50px;">☀️</div></div>
+        <div class="splash-logo-wrap"><div class="splash-logo">☀️</div></div>
         <div class="splash-title">شـمـس</div>
-        <p style="color: var(--text-sub); margin-top: 10px;">جاري تشغيل منصة الذكاء الاصطناعي والطهي الملكي...</p>
+        <div class="splash-subtitle">جاري تحضير تجربة النقل والخدمات الذكية...</div>
+        <div class="loader-bar-bg"><div class="loader-bar-fill"></div></div>
     </div>
 
     <div class="container">
+        <!-- Hero Header -->
         <div class="luxury-card hero-header">
+            <div class="brand-logo-wrap"><div class="brand-logo">☀️</div></div>
             <h1>شـمـس</h1>
-            <p style="color: var(--text-sub); font-size: 14px;">المنصة الملكية الشاملة للوصفات وتوصيل المكونات | درعا</p>
+            <p>الخدمة الملكية المتكاملة للتوصيل والذكاء الاصطناعي | درعا وريفها</p>
+            <div class="vip-badge">✨ معيار الفخامة المطلقة في قطاع الخدمات</div>
         </div>
 
-        <!-- Dynamic AI Recipe Platform -->
+        <!-- Live Stats -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="number">+1,500</div>
+                <div class="label">طرد تم تسليمه</div>
+            </div>
+            <div class="stat-item">
+                <div class="number">100%</div>
+                <div class="label">تغطية المحافظة</div>
+            </div>
+            <div class="stat-item">
+                <div class="number">🚀 فائق السرعة</div>
+                <div class="label">استجابة فورية</div>
+            </div>
+        </div>
+
+        <!-- Comprehensive Multi-Option AI Assistant -->
         <div class="luxury-card">
-            <div class="section-title">🍳 شيف شمس الذكي (المكونات + طريقة التحضير)</div>
+            <div class="section-title">🤖 مساعد شمس الذكي الشامل (طبخ، أدوية، وحوائج)</div>
             <div class="ai-assistant-box">
-                <p style="font-size: 13px; color: var(--text-sub); margin-bottom: 12px;">اكتب اسم أي أكلة (مثال: مقلوبة حمصية، شاكرية بالدجاج، بيتزا مارغريتا...) وسيعرض لك الشيف المكونات والطريقة فوراً:</p>
-                <div class="form-group">
-                    <input type="text" id="aiInput" placeholder="أدخل اسم الطبخة التي تريد تحضيرها...">
+                <p style="font-size: 13px; color: var(--text-sub); margin-bottom: 12px;">اكتب اسم أي أكلة (مقلوبة، كبسة، ملوخية، شاورما، بيتزا...) أو أي دواء (بنادول، سيتامول، مسكنات...) أو أي غرض وسيعطيك المكونات وتوصيلها:</p>
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <input type="text" id="aiInput" placeholder="اكتب اسم الطبخة أو الدواء أو الطلب هنا...">
                 </div>
-                <button class="btn btn-ai" id="aiBtn" onclick="generateRecipe()">✨ عرض المقادير وطريقة التحضير الفورية</button>
+                <button class="btn btn-ai" onclick="runComprehensiveAI()">✨ تحليل ومطابقة الطلب فوراً</button>
                 
                 <div id="aiResult" class="ai-result-card">
-                    <h4 id="recipeTitle" style="color: var(--gold-primary); font-size: 17px; margin-bottom: 12px;"></h4>
-                    
-                    <div class="recipe-section">
-                        <h5>🛒 المكونات والمقادير المطلوبة:</h5>
-                        <div id="recipeIngredients"></div>
-                    </div>
-
-                    <div class="recipe-section">
-                        <h5>👨‍🍳 طريقة التحضير خطوة بخطوة:</h5>
-                        <div id="recipeSteps"></div>
-                    </div>
-
-                    <button class="btn btn-wa" style="margin-top: 14px;" onclick="orderIngredients()">🛒 طلب توصيل كافة المقادير عبر أسطول شمس</button>
+                    <h4 id="aiTitle" style="color: var(--gold-light); margin-bottom: 8px;">📌 تفاصيل الطلب والمكونات:</h4>
+                    <p id="aiBody" style="font-size: 13.5px; line-height: 1.7;"></p>
+                    <button class="btn btn-wa" style="margin-top: 14px; padding: 12px;" onclick="orderAiItems()">🛒 طلب تأمين هذه المواد وتوصيلها فوراً</button>
                 </div>
             </div>
         </div>
 
-        <!-- Delivery Order -->
+        <!-- Services Showcase -->
         <div class="luxury-card">
-            <div class="section-title">📝 إرسال طلب التوصيل المباشر</div>
+            <div class="section-title">👑 خدماتنا الملكية المتكاملة</div>
+            <div class="services-grid">
+                <div class="service-item">
+                    <div class="service-icon">📦</div>
+                    <div class="service-content">
+                        <h3>توصيل الطرود والشحنات VIP</h3>
+                        <p>نقل آمن وفائق السرعة للشحنات الشخصية ومشتريات المتاجر من الباب إلى الباب.</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">🍳</div>
+                    <div class="service-content">
+                        <h3>تأمين مقادير الطبخ والوجبات</h3>
+                        <p>تأمين كافة مكونات طعامك المفضلة وتوصيلها طازجة ومبوبة عبر أسطولنا.</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">💊</div>
+                    <div class="service-content">
+                        <h3>تأمين الأدوية والمستلزمات الطبية</h3>
+                        <p>تأمين الأدوية والوصفات الطبية من الصيدليات المعتمدة بخصوصية وسرعة تامة.</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">🌾</div>
+                    <div class="service-content">
+                        <h3>خدمة القرى والريف المحيط</h3>
+                        <p>ربط مستمر وسريع بين مدينة درعا وكافة بلدات وقرى الريف دون أي تأخير.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fleet & Calculator -->
+        <div class="luxury-card">
+            <div class="section-title">🚗 الأسطول الملكي وحاسبة السعر الذكية</div>
+            <div class="form-group">
+                <label>اختر مركبة الأسطول:</label>
+                <div class="vehicle-options">
+                    <div class="vehicle-btn" onclick="setVehicle(this, 0.75)">
+                        <span style="font-size:20px">🏍️</span>
+                        <span>دراجة نارية</span>
+                    </div>
+                    <div class="vehicle-btn active" onclick="setVehicle(this, 1)">
+                        <span style="font-size:20px">🚕</span>
+                        <span>تاكسي فيرنا</span>
+                    </div>
+                    <div class="vehicle-btn" onclick="setVehicle(this, 1.45)">
+                        <span style="font-size:20px">🏎️</span>
+                        <span>سيارة BMW</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>الوجهة أو المنطقة:</label>
+                <select id="destination" onchange="updateBasePrice()">
+                    <option value="25000">درعا البلد / المحطة (داخل المدينة) - 25,000 ل.س</option>
+                    <option value="40000">اليادودة / طفس / النعيمة / صيدا - 40,000 ل.س</option>
+                    <option value="60000">الغارية / خربا / الداعورية - 60,000 ل.س</option>
+                    <option value="80000">إزرع / بصرى الشام / نوى / جاسم - 80,000 ل.س</option>
+                </select>
+            </div>
+
+            <div class="negotiation-box">
+                <span style="font-size: 12px; color: var(--text-sub); text-transform: uppercase;">التكلفة التقديرية للرحلة</span>
+                <div class="price-val" id="priceDisplay">25,000 ل.س</div>
+                <div id="priceNew" style="font-size: 13.5px; color: var(--gold-light); font-weight: 600;">تساوي: 250 ليرة جديدة</div>
+
+                <div class="range-container">
+                    <label for="negotiateSlider" style="font-size: 12px; margin-bottom: 4px; color: var(--text-sub);">اسحب لتعديل السعر بحسب ميزانيتك (مفاصلة فورية):</label>
+                    <input type="range" id="negotiateSlider" class="range-slider" min="15000" max="120000" step="5000" value="25000" oninput="handleNegotiation()">
+                    <div id="dealStatus" class="deal-status deal-accepted">✅ السعر النظامي معتمد</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Form -->
+        <div class="luxury-card">
+            <div class="section-title">📝 إرسال الطلب إلى إدارة شمس</div>
             <div class="form-group">
                 <label>الاسم الكريم:</label>
-                <input type="text" id="cName" placeholder="اسمك الكريم">
+                <input type="text" id="cName" placeholder="أدخل اسمك هنا">
             </div>
             <div class="form-group">
-                <label>رقم الواتساب:</label>
+                <label>رقم الواتساب للتواصل:</label>
                 <input type="tel" id="cPhone" placeholder="09xxxxxxxx">
             </div>
             <div class="form-group">
-                <label>تفاصيل الطلب والمكونات المراد توصيلها:</label>
-                <textarea id="cDetails" rows="4" placeholder="المواد المطلوبة والعنوان بالتفصيل..."></textarea>
+                <label>تفاصيل العنوان والطلب:</label>
+                <textarea id="cDetails" rows="3" placeholder="موقع الاستلام، اسم الشارع، أو تفاصيل الطلب..."></textarea>
             </div>
-            <button class="btn btn-wa" onclick="submitOrder()">💬 إرسال الطلب فوراً للواتساب</button>
+            <button class="btn btn-wa" onclick="submitOrder()">💬 اعتماد الطلب والإرسال الفوري للواتساب</button>
         </div>
+
+        <footer>جميع الحقوق محفوظة © شمس 2026</footer>
     </div>
 
+    <!-- Floating Actions -->
     <div class="floating-actions">
-        <a href="https://wa.me/963997973734" class="floating-btn btn-wa" target="_blank" style="color: #fff;">💬 واتساب</a>
-        <a href="tel:0934964138" class="floating-btn" style="background: var(--gold-gradient); color: #000;">📞 اتصال</a>
+        <a href="https://wa.me/963997973734" class="floating-btn btn-wa" target="_blank">💬 واتساب</a>
+        <a href="tel:0934964138" class="floating-btn btn-call">📞 اتصال</a>
     </div>
 
     <script>
@@ -128,99 +252,125 @@
                 const splash = document.getElementById('splash-screen');
                 splash.style.opacity = '0';
                 splash.style.visibility = 'hidden';
-            }, 1800);
+            }, 2000);
         });
 
-        const GEMINI_API_KEY = "YOUR_GEMINI_API_KEY"; // قم بوضع المفتاح هنا
+        // 🧠 Comprehensive Smart Knowledge Base (Recipes & Medicines & General Goods)
+        const knowledgeBase = {
+            "مقلوبة": "• لحم أو دجاج طازج\n• رز مغسول\n• باذنجان / زهره / بطاطا\n• بهارات مشكلة وسمنة بلدية\n• مكسرات للتزيين",
+            "كبسة": "• دجاج أو لحم غنم\n• رز بسمتي طويل\n• بهارات كبسة وقرفة ولومي\n• بندورة وبصل ومعجون طماطم\n• مكسرات وفلفل",
+            "ملوخية": "• ملوخية ورق أو ناعمة\n• دجاج طازج\n• ثوم وكزبرة يابسة\n• سمنة وليمون طازج",
+            "شاكرية": "• لحم شقف طازج\n• لبن رائب ونشاء وثوم\n• بصل وسمنة بلدي\n• رز بشعيرية",
+            "شاورما": "• دجاج مسحب متبل\n• خبز صاج أو سياحي\n• ثومية ومخلل خيار\n• بطاطا مقلية وزيت",
+            "بيتزا": ["طحين وخميرة وزيت زيتون", "جبنة موزاريلا وشيدر", "صلصة طماطم وأعشاب", "زيتون وفطر وفلفل ألوان"],
+            "برغر": ["لحم أو دجاج برغر متبل", "خبز برغر سمسم", "جبن شيدر شرائح", "خس وبندورة وصوص خاص"],
+            "سيتامول": "• مسكن آلام خفيف ومخفض حرارة آمن.\n• متوفر بدون وصفة طبية.",
+            "بنادول": "• مسكن آلام عام وصداع ومخفض حرارة.\n• متوفر بجميع التركيبات.",
+            "بروفين": "• مضاد التهاب ومسكن قوي للمفاصل والأسنان.",
+            "فيتامين": "• مقويات عامة ومكملات غذائية لصحة الجسم.",
+            "دواء": "• يرجى إرسال اسم الدواء بدقة أو صورة الوصفة الطبية ليقوم المندوب بتأمينه فوراً من الصيدلية."
+        };
 
-        async function generateRecipe() {
+        let lastAiQuery = "";
+
+        function runComprehensiveAI() {
             const query = document.getElementById('aiInput').value.trim();
-            const btn = document.getElementById('aiBtn');
             const resBox = document.getElementById('aiResult');
+            const title = document.getElementById('aiTitle');
+            const body = document.getElementById('aiBody');
 
             if(!query) {
-                alert('يرجى كتابة اسم الطبخة أولاً.');
+                alert('الرجاء كتابة اسم الطبخة أو الدواء أو السلعة أولاً.');
                 return;
             }
 
-            btn.innerText = "⏳ جاري إعداد الوصفة والمكونات من الذكاء الاصطناعي...";
-            btn.disabled = true;
+            lastAiQuery = query;
+            resBox.style.display = 'block';
 
-            try {
-                // طلب مباشر يحتوي على تعليمات صارمة لإرجاع المكونات والطريقة بشكل منظم
-                const prompt = `أنت شيف احترافي في منصة "شمس". أعطني وصفة طبخة: (${query}).
-أجب بنفس النمط بالضبط:
-المكونات:
-- مكون 1
-- مكون 2
-طريقة التحضير:
-1. خطوة 1
-2. خطوة 2`;
+            // Search in knowledge base
+            let foundKey = Object.keys(knowledgeBase).find(key => query.includes(key));
 
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents: [{ parts: [{ text: prompt }] }]
-                    })
-                });
-
-                const data = await response.json();
-                const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
-
-                if(text) {
-                    displayRecipe(query, text);
-                } else {
-                    throw new Error("Invalid Response");
-                }
-            } catch (err) {
-                // محاكاة احتياطية تفاعلية في حال انقطاع الشبكة أو حظر الـ API
-                displayFallbackRecipe(query);
-            } finally {
-                btn.innerText = "✨ عرض المقادير وطريقة التحضير الفورية";
-                btn.disabled = false;
+            if(foundKey) {
+                let details = knowledgeBase[foundKey];
+                if(Array.isArray(details)) details = details.map(i => `• ${i}`).join('\n');
+                
+                title.innerText = `📌 مكونات وتفاصيل (${foundKey}):`;
+                body.innerHTML = details.replace(/\n/g, '<br>') + `<br><br><b>💡 مندوب شمس جاهز لشراء هذه المواد وتوصيلها فوراً لمنزلك!</b>`;
+            } else {
+                title.innerText = `📝 الطلب الخاص بـ (${query}):`;
+                body.innerHTML = `• المواد والمستلزمات اللازمة لـ (${query})<br>• خدمة الشراء والتأمين الفوري من المتاجر<br><br><b>💡 فريق شمس مستعد لجلب كافة متطلبات (${query}) وتوصيلها بدقة وسرعة!</b>`;
             }
         }
 
-        function displayRecipe(titleName, fullText) {
-            document.getElementById('aiResult').style.display = 'block';
-            document.getElementById('recipeTitle').innerText = `🍽️ وصفة وطريقة تحضير: ${titleName}`;
-            
-            const parts = fullText.split('طريقة التحضير:');
-            const ingredients = parts[0] ? parts[0].replace('المكونات:', '').trim().replace(/\n/g, '<br>') : fullText;
-            const steps = parts[1] ? parts[1].trim().replace(/\n/g, '<br>') : "اتبع الخطوات المعتادة للتحضير.";
-
-            document.getElementById('recipeIngredients').innerHTML = ingredients;
-            document.getElementById('recipeSteps').innerHTML = steps;
-        }
-
-        function displayFallbackRecipe(query) {
-            document.getElementById('aiResult').style.display = 'block';
-            document.getElementById('recipeTitle').innerText = `🍽️ مقادير وطريقة تحضير: ${query}`;
-            document.getElementById('recipeIngredients').innerHTML = `• اللحوم أو الدجاج الطازج بحسب الطلب<br>• الخضار الموسمية والمكونات الأساسية<br>• التوابل والبهارات الخاصة بالوجبة`;
-            document.getElementById('recipeSteps').innerHTML = `1. غسل وتنظيف المواد والمكونات طازجة.<br>2. إعداد التتبيلة وطبخ الوجبة على نار هادئة.<br>3. تقديم الوجبة ساخنة مع التزيين.`;
-        }
-
-        function orderIngredients() {
-            const query = document.getElementById('aiInput').value.trim();
+        function orderAiItems() {
             const detailsBox = document.getElementById('cDetails');
-            detailsBox.value = `طلب شراء وتوصيل مقادير طبخة: (${query})\nيرجى تأمين كافة المكونات المذكورة في المساعد الذكي وتوصيلها للمنزل.`;
+            detailsBox.value = `طلب تأمين وتوصيل عبر المساعد الذكي: (${lastAiQuery})`;
             detailsBox.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        let vehicleMultiplier = 1;
+        let baseStandardPrice = 25000;
+        let selectedVehicleName = "تاكسي فيرنا";
+
+        function setVehicle(btn, multiplier) {
+            document.querySelectorAll('.vehicle-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            vehicleMultiplier = multiplier;
+            selectedVehicleName = btn.innerText.replace(/\s+/g, ' ').trim();
+            updateBasePrice();
+        }
+
+        function updateBasePrice() {
+            const baseVal = parseInt(document.getElementById('destination').value);
+            baseStandardPrice = Math.round(baseVal * vehicleMultiplier);
+
+            const slider = document.getElementById('negotiateSlider');
+            slider.value = baseStandardPrice;
+            slider.min = Math.round(baseStandardPrice * 0.75);
+            slider.max = Math.round(baseStandardPrice * 1.35);
+
+            updateDisplay(baseStandardPrice);
+        }
+
+        function handleNegotiation() {
+            updateDisplay(parseInt(document.getElementById('negotiateSlider').value));
+        }
+
+        function updateDisplay(price) {
+            const newCurr = Math.round(price / 100);
+            document.getElementById('priceDisplay').innerText = price.toLocaleString() + ' ل.س';
+            document.getElementById('priceNew').innerText = 'تساوي: ' + newCurr.toLocaleString() + ' ليرة جديدة';
+
+            const statusBox = document.getElementById('dealStatus');
+            const diff = price - baseStandardPrice;
+
+            if (diff >= 0) {
+                statusBox.className = 'deal-status deal-accepted';
+                statusBox.innerHTML = '✅ عرض ممتاز ومقبول فوراً';
+            } else {
+                statusBox.className = 'deal-status deal-negotiate';
+                statusBox.innerHTML = '🤝 مفاصلة مقبولة (ضمن التفاوض الودي)';
+            }
         }
 
         function submitOrder() {
             const name = document.getElementById('cName').value.trim();
             const phone = document.getElementById('cPhone').value.trim();
             const details = document.getElementById('cDetails').value.trim();
+            const destName = document.getElementById('destination').options[document.getElementById('destination').selectedIndex].text;
+            const currentPrice = document.getElementById('priceDisplay').innerText;
+            const newCurrText = document.getElementById('priceNew').innerText;
 
             if(!name || !phone || !details) {
-                alert('الرجاء إدخال الاسم ورقم التواصل وتفاصيل الطلب.');
+                alert('الرجاء إدخال الاسم ورقم الهاتف والتفاصيل.');
                 return;
             }
 
-            const msg = `👑 طلب توصيل مقادير عبر منصة شمس:\n\n👤 الاسم: ${name}\n📞 الرقم: ${phone}\n📝 التفاصيل والمكونات:\n${details}`;
+            const msg = `👑 طلب توصيل جديد - شمس:\n\n👤 الاسم: ${name}\n📞 الرقم: ${phone}\n🚗 المركبة: ${selectedVehicleName}\n📍 الوجهة: ${destName}\n💰 السعر: ${currentPrice} (${newCurrText})\n📝 التفاصيل: ${details}`;
             window.open(`https://wa.me/963997973734?text=${encodeURIComponent(msg)}`, '_blank');
         }
+
+        updateBasePrice();
     </script>
 </body>
 </html>
