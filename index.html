@@ -133,7 +133,7 @@
             padding: 24px 16px;
         }
 
-        /* Luxury Gold Frame Card */
+        /* Luxury Card */
         .luxury-card {
             background: var(--card-glass);
             backdrop-filter: blur(30px);
@@ -154,23 +154,6 @@
             transform: translateY(-4px);
         }
 
-        .luxury-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: -100%;
-            width: 300%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--gold-light), var(--gold-primary), transparent);
-            animation: shine 6s infinite linear;
-        }
-
-        @keyframes shine {
-            0% { transform: translateX(50%); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* Hero Header */
         .hero-header {
             text-align: center;
             padding: 50px 20px 40px;
@@ -215,7 +198,6 @@
         .hero-header p {
             color: var(--text-sub);
             font-size: 15px;
-            font-weight: 400;
         }
 
         .vip-badge {
@@ -233,7 +215,6 @@
             box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
         }
 
-        /* Section Titles */
         .section-title {
             color: var(--gold-light);
             font-size: 21px;
@@ -246,32 +227,32 @@
             padding-bottom: 14px;
         }
 
-        /* Stats Bar */
-        .stats-bar {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            background: rgba(8, 8, 12, 0.95);
-            border: 1px solid var(--border-glow);
-            border-radius: 22px;
-            padding: 20px 12px;
-            margin-bottom: 28px;
-            text-align: center;
+        /* AI Smart Assistant Box */
+        .ai-assistant-box {
+            background: linear-gradient(145deg, #0d0d14, #050508);
+            border: 1.5px solid var(--gold-primary);
+            border-radius: 24px;
+            padding: 22px;
+            margin-bottom: 10px;
+            box-shadow: inset 0 0 25px rgba(0,0,0,0.8), 0 0 25px rgba(212, 175, 55, 0.15);
         }
 
-        .stat-item .number {
-            font-size: 22px;
-            font-weight: 900;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .ai-result-card {
+            display: none;
+            background: rgba(18, 18, 26, 0.95);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 18px;
+            padding: 18px;
+            margin-top: 16px;
+            font-size: 14px;
+            color: #fff;
+            line-height: 1.7;
         }
 
-        .stat-item .label {
-            font-size: 11px;
-            color: var(--text-sub);
-            margin-top: 4px;
-            font-weight: 600;
+        .ai-result-card h4 {
+            color: var(--gold-light);
+            margin-bottom: 8px;
+            font-size: 16px;
         }
 
         /* Services Grid */
@@ -294,9 +275,7 @@
 
         .service-item:hover {
             border-color: var(--gold-primary);
-            background: linear-gradient(145deg, rgba(22, 22, 34, 0.98), rgba(10, 10, 15, 0.98));
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .service-icon {
@@ -322,7 +301,6 @@
         .service-content p {
             color: var(--text-sub);
             font-size: 13.5px;
-            line-height: 1.6;
         }
 
         /* Fleet Options */
@@ -351,16 +329,11 @@
             gap: 8px;
         }
 
-        .vehicle-btn .fleet-icon {
-            font-size: 24px;
-        }
-
         .vehicle-btn.active {
             border-color: var(--gold-primary);
             background: linear-gradient(135deg, rgba(212, 175, 55, 0.25), rgba(14, 14, 20, 0.95));
             color: var(--gold-light);
             box-shadow: 0 0 25px rgba(212, 175, 55, 0.35);
-            transform: scale(1.02);
         }
 
         .form-group {
@@ -410,7 +383,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin: 8px 0;
-            text-shadow: 0 0 30px rgba(212, 175, 55, 0.45);
         }
 
         .range-container {
@@ -426,8 +398,6 @@
             height: 6px;
             background: #222;
             border-radius: 3px;
-            outline: none;
-            margin: 14px 0 10px;
         }
 
         .deal-status {
@@ -440,9 +410,7 @@
         }
         .deal-accepted { background: rgba(37, 211, 102, 0.2); color: #25d366; border: 1px solid #25d366; }
         .deal-negotiate { background: rgba(212, 175, 55, 0.2); color: var(--gold-light); border: 1px solid var(--gold-primary); }
-        .deal-low { background: rgba(255, 75, 75, 0.2); color: #ff6b6b; border: 1px solid #ff6b6b; }
 
-        /* Buttons Styling */
         .btn {
             display: flex;
             align-items: center;
@@ -459,21 +427,10 @@
             transition: all 0.35s ease;
         }
 
-        .btn-wa {
-            background: linear-gradient(135deg, #25d366, #128c7e);
-            color: #fff;
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.35);
-        }
-        .btn-wa:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5); }
+        .btn-wa { background: linear-gradient(135deg, #25d366, #128c7e); color: #fff; box-shadow: 0 10px 30px rgba(37, 211, 102, 0.35); }
+        .btn-call { background: var(--gold-gradient); color: #020204; box-shadow: 0 10px 30px rgba(212, 175, 55, 0.35); }
+        .btn-ai { background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark)); color: #000; font-weight: 800; }
 
-        .btn-call {
-            background: var(--gold-gradient);
-            color: #020204;
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.35);
-        }
-        .btn-call:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5); }
-
-        /* Floating Bar */
         .floating-actions {
             position: fixed;
             bottom: 20px;
@@ -490,7 +447,6 @@
             padding: 10px;
             border-radius: 50px;
             border: 1px solid var(--border-glow);
-            box-shadow: 0 15px 45px rgba(0,0,0,0.9);
         }
 
         .floating-btn {
@@ -505,24 +461,18 @@
             gap: 8px;
         }
 
-        footer {
-            text-align: center;
-            color: var(--text-sub);
-            font-size: 13px;
-            margin-top: 35px;
-            opacity: 0.8;
-        }
+        footer { text-align: center; color: var(--text-sub); font-size: 13px; margin-top: 35px; opacity: 0.8; }
     </style>
 </head>
 <body>
 
-    <!-- Cinematic Splash Screen Container -->
+    <!-- Splash Screen Launch -->
     <div id="splash-screen">
         <div class="splash-logo-wrap">
             <div class="splash-logo">☀️</div>
         </div>
         <div class="splash-title">شـمـس</div>
-        <div class="splash-subtitle">جاري تحضير تجربة النقل الملكية...</div>
+        <div class="splash-subtitle">جاري تحضير تجربة النقل والخدمات الذكية...</div>
         <div class="loader-bar-bg">
             <div class="loader-bar-fill"></div>
         </div>
@@ -535,23 +485,25 @@
                 <div class="brand-logo">☀️</div>
             </div>
             <h1>شـمـس</h1>
-            <p>الخدمة الملكية المتكاملة للتوصيل والنقل السريع والفاخر | درعا وريفها</p>
-            <div class="vip-badge">✨ معيار الفخامة المطلقة في قطاع التوصيل</div>
+            <p>الخدمة الملكية المتكاملة للتوصيل والذكاء الاصطناعي | درعا وريفها</p>
+            <div class="vip-badge">✨ الأسرع والأكثر تطوراً في المحافظة</div>
         </div>
 
-        <!-- Live Stats Bar -->
-        <div class="stats-bar">
-            <div class="stat-item">
-                <div class="number">+1,500</div>
-                <div class="label">طرد تم تسليمه بنجاح</div>
-            </div>
-            <div class="stat-item">
-                <div class="number">100%</div>
-                <div class="label">تغطية شاملة للمحافظة</div>
-            </div>
-            <div class="stat-item">
-                <div class="number">🚀 فائق السرعة</div>
-                <div class="label">استجابة فورية للطلبات</div>
+        <!-- NEW: Smart AI Services Assistant Widget -->
+        <div class="luxury-card">
+            <div class="section-title">🤖 مساعد شمس الذكي (مكونات طبخ & استشارة أدوية)</div>
+            <div class="ai-assistant-box">
+                <p style="font-size: 13px; color: var(--text-sub); margin-bottom: 12px;">اكتب اسم الطبخة للحصول على مكوناتها فوراً، أو استفسر عن أي دواء أو حاجة لتأمينها عبر التوصيل:</p>
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <input type="text" id="aiInput" placeholder="مثال: مكونات مقلوبة لحمة، أو دواء سيتامول...">
+                </div>
+                <button class="btn btn-ai" onclick="runSmartAI()">✨ استفسر واطلب المكونات فوراً</button>
+                
+                <div id="aiResult" class="ai-result-card">
+                    <h4 id="aiTitle">📌 النتيجة والمكونات المطلوبة:</h4>
+                    <p id="aiBody"></p>
+                    <button class="btn btn-wa" style="margin-top: 14px; padding: 12px;" onclick="orderAiItems()">🛒 طلب توصيل هذه المواد الآن عبر الواتساب</button>
+                </div>
             </div>
         </div>
 
@@ -563,28 +515,28 @@
                     <div class="service-icon">📦</div>
                     <div class="service-content">
                         <h3>توصيل الطرود والشحنات VIP</h3>
-                        <p>نقل فائق السرعة والأمان للشحنات الشخصية ومشتريات المتاجر من الباب إلى الباب مع عناية خاصة بالمواد الحساسة.</p>
+                        <p>نقل فائق السرعة والأمان للشحنات الشخصية ومشتريات المتاجر من الباب إلى الباب مع عناية خاصة.</p>
                     </div>
                 </div>
                 <div class="service-item">
-                    <div class="service-icon">🛍️</div>
+                    <div class="service-icon">🍳</div>
                     <div class="service-content">
-                        <h3>قضاء الحوائج والمشتريات الخاصة</h3>
-                        <p>تأمين كافة المستلزمات اليومية، الطلبات من المطاعم، والأدوية الإسعافية وتوصيلها بخصوصية وسرعة لا مثيل لها.</p>
+                        <h3>تأمين مقادير الطبخ والمشتريات</h3>
+                        <p>استعن بمساعدنا الذكي أعلاه لجلب كافة مكونات وجبتك المفضلة وتوصيلها طازجة إلى منزلك.</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">💊</div>
+                    <div class="service-content">
+                        <h3>تأمين الأدوية من الصيدليات</h3>
+                        <p>تأمين الوصفات الطبية والأدوية الهامة من الصيدليات المعتمدة بسرعة وخصوصية تامة.</p>
                     </div>
                 </div>
                 <div class="service-item">
                     <div class="service-icon">🌾</div>
                     <div class="service-content">
                         <h3>خدمة القرى والريف المحيط</h3>
-                        <p>ربط ملكي مباشر ومستمر بين مدينة درعا وكافة مدن وبلدات الريف (شمالاً وجنوباً وغرباً) دون أي تأخير.</p>
-                    </div>
-                </div>
-                <div class="service-item">
-                    <div class="service-icon">💼</div>
-                    <div class="service-content">
-                        <h3>نقل المستندات والبريد الرسمي</h3>
-                        <p>خدمة سرية وموثوقة موجهة للشركات والمكاتب ورجال الأعمال لنقل الوثائق والتعاميم الهامة بأمان تام.</p>
+                        <p>ربط ملكي مباشر ومستمر بين مدينة درعا وكافة مدن وبلدات الريف دون أي تأخير.</p>
                     </div>
                 </div>
             </div>
@@ -598,15 +550,15 @@
                 <label>اختر مركبة الأسطول المناسبة لطلبتك:</label>
                 <div class="vehicle-options">
                     <div class="vehicle-btn" onclick="setVehicle(this, 0.75)">
-                        <span class="fleet-icon">🏍️</span>
+                        <span style="font-size:22px">🏍️</span>
                         <span>دراجة نارية</span>
                     </div>
                     <div class="vehicle-btn active" onclick="setVehicle(this, 1)">
-                        <span class="fleet-icon">🚕</span>
+                        <span style="font-size:22px">🚕</span>
                         <span>تاكسي فيرنا</span>
                     </div>
                     <div class="vehicle-btn" onclick="setVehicle(this, 1.45)">
-                        <span class="fleet-icon">🏎️</span>
+                        <span style="font-size:22px">🏎️</span>
                         <span>سيارة BMW</span>
                     </div>
                 </div>
@@ -623,7 +575,7 @@
             </div>
 
             <div class="negotiation-box">
-                <span style="font-size: 12px; color: var(--text-sub); text-transform: uppercase; letter-spacing: 1.5px;">التكلفة التقديرية للرحلة</span>
+                <span style="font-size: 12px; color: var(--text-sub); text-transform: uppercase;">التكلفة التقديرية للرحلة</span>
                 <div class="price-val" id="priceDisplay">25,000 ل.س</div>
                 <div id="priceNew" style="font-size: 13.5px; color: var(--gold-light); font-weight: 600;">تساوي: 250 ليرة جديدة</div>
 
@@ -672,14 +624,48 @@
     </div>
 
     <script>
-        // Automatic Splash Screen Fade Out Logic
+        // Automatic Splash Screen Logic
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const splash = document.getElementById('splash-screen');
                 splash.style.opacity = '0';
                 splash.style.visibility = 'hidden';
-            }, 2300);
+            }, 2200);
         });
+
+        // Built-in Smart AI Engine Logic
+        let lastAiQuery = "";
+        function runSmartAI() {
+            const query = document.getElementById('aiInput').value.trim();
+            const resBox = document.getElementById('aiResult');
+            const title = document.getElementById('aiTitle');
+            const body = document.getElementById('aiBody');
+
+            if(!query) {
+                alert('الرجاء كتابة اسم الطبخة أو الدواء أولاً.');
+                return;
+            }
+
+            lastAiQuery = query;
+            resBox.style.display = 'block';
+
+            if(query.includes('مقلوبة') || query.includes('طبخ') || query.includes('كبسة') || query.includes('شاكرية')) {
+                title.innerText = `🍳 مكونات وجبة (${query}):`;
+                body.innerHTML = `• كيلو لحمة أو دجاج طازج<br>• رز قصير أو طويل حسب الطلب<br>• خضار (باذنجان/زهور/بطاطا)<br>• بهارات مشكلة، مكسرات، وزيت<br><br><b>💡 فريق شمس جاهز لشراء هذه المقادير فوراً وتوصيلها لباب بيتك!</b>`;
+            } else if(query.includes('دواء') || query.includes('سيتامول') || query.includes('التهاب') || query.includes('وجع')) {
+                title.innerText = `💊 الاستفسار الطبي لمادة (${query}):`;
+                body.innerHTML = `تأمين الأدوية والمسكنات والشرابات الطبية متوفر لدينا.<br><b>⚠️ تنبيه: يرجى إبراز الوصفة الطبية إن وجدت للمندوب عند التسليم.</b>`;
+            } else {
+                title.innerText = `📝 استفسار خدمي حول (${query}):`;
+                body.innerHTML = `تم استلام طلبك الخاص حول (${query}). يمكنك إرساله مباشرة للإدارة لتأمينه عبر مندوبينا.`;
+            }
+        }
+
+        function orderAiItems() {
+            const detailsBox = document.getElementById('cDetails');
+            detailsBox.value = `طلب خاص عبر المساعد الذكي: تأمين وتوصيل (${lastAiQuery})`;
+            detailsBox.scrollIntoView({ behavior: 'smooth' });
+        }
 
         let vehicleMultiplier = 1;
         let baseStandardPrice = 25000;
@@ -722,12 +708,9 @@
             if (diff >= 0) {
                 statusBox.className = 'deal-status deal-accepted';
                 statusBox.innerHTML = '✅ عرض ممتاز ومقبول فوراً من الإدارة';
-            } else if (diff >= -6000) {
+            } else {
                 statusBox.className = 'deal-status deal-negotiate';
                 statusBox.innerHTML = '🤝 مفاصلة مقبولة (ضمن حدود التفاوض الودي)';
-            } else {
-                statusBox.className = 'deal-status deal-low';
-                statusBox.innerHTML = '⚠️ السعر منخفض قليلاً، سيتم إرساله للموافقة مع المندوب';
             }
         }
 
