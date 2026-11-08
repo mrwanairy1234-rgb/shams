@@ -6,325 +6,252 @@
     <title>شمس - للتوصيل والنقل السريع | درعا</title>
     <style>
         :root {
-            --bg-color: #0f0f11;
-            --card-bg: #1a1a1e;
-            --primary: #d4af37;
-            --primary-hover: #e5c158;
-            --text-main: #ffffff;
-            --text-muted: #b0b0b5;
-            --accent-green: #25d366;
-            --border-color: #333338;
+            --bg-dark: #0f0f11;
+            --card-bg: #18181c;
+            --primary-gold: #d4af37;
+            --gold-hover: #f1c40f;
+            --whatsapp-green: #25d366;
+            --text-white: #ffffff;
+            --text-muted: #a0a0aa;
+            --border-color: #2a2a32;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Tahoma, 'Segoe UI', Geneva, Verdana, sans-serif;
         }
 
         body {
-            background: var(--bg-color);
-            color: var(--text-main);
-            font-family: Tahoma, sans-serif;
-            margin: 0;
-            padding: 0;
-            text-align: right;
-            direction: rtl;
-        }
-
-        /* شريط الإعلانات المتحرك */
-        .ticker-container {
-            background: var(--primary);
-            color: #111;
-            font-weight: bold;
-            padding: 10px 0;
-            overflow: hidden;
-            white-space: nowrap;
-            position: relative;
-            box-shadow: 0 2px 10px rgba(212,175,55,0.2);
-        }
-
-        .ticker-text {
-            display: inline-block;
-            padding-left: 100%;
-            animation: ticker 20s linear infinite;
-        }
-
-        .ticker-container:hover .ticker-text {
-            animation-play-state: paused;
-        }
-
-        @keyframes ticker {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-100%, 0, 0); }
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            line-height: 1.6;
+            padding: 20px 0 40px;
         }
 
         .container {
-            max-width: 600px;
-            margin: 30px auto;
-            padding: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 0 15px;
         }
 
+        /* البطاقات الرئيسية */
         .card {
             background: var(--card-bg);
-            border: 2px solid var(--border-color);
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            margin-bottom: 25px;
-            transition: border-color 0.3s;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+            position: relative;
+            overflow: hidden;
         }
 
-        .card:hover {
-            border-color: var(--primary);
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
         }
 
-        .header-title {
+        .header-card {
             text-align: center;
+            padding: 25px 20px;
         }
 
-        .header-title h1 {
-            color: var(--primary);
-            font-size: 32px;
-            margin: 0 0 5px 0;
+        .header-card h1 {
+            color: var(--primary-gold);
+            font-size: 28px;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
         }
 
-        .header-title p {
+        .header-card p {
             color: var(--text-muted);
-            font-size: 15px;
-            margin: 0;
+            font-size: 14px;
         }
 
-        .badge {
-            background: rgba(212, 175, 55, 0.15);
-            color: var(--primary);
-            border: 1px solid var(--primary);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 13px;
-            display: inline-block;
-            margin: 15px 0;
-            font-weight: bold;
-        }
-
-        h2 {
+        .section-title {
+            color: var(--primary-gold);
             font-size: 18px;
-            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 8px;
-            margin-top: 0;
+            padding-bottom: 10px;
         }
 
+        /* أدوات التحكم في النموذج */
         .form-group {
             margin-bottom: 15px;
         }
 
         label {
             display: block;
-            margin-bottom: 5px;
-            font-size: 14px;
+            margin-bottom: 6px;
+            font-size: 13px;
             color: var(--text-muted);
         }
 
-        select, input {
+        input, textarea {
             width: 100%;
             padding: 12px;
-            background: #111;
+            background: #101014;
             border: 1px solid var(--border-color);
-            color: var(--text-main);
             border-radius: 10px;
-            font-size: 15px;
-            box-sizing: border-box;
+            color: #fff;
+            font-size: 14px;
             outline: none;
-            font-family: Tahoma, sans-serif;
+            transition: border-color 0.3s;
         }
 
-        select:focus, input:focus {
-            border-color: var(--primary);
+        input:focus, textarea:focus {
+            border-color: var(--primary-gold);
         }
 
-        .price-box {
-            background: #121215;
-            border: 1px dashed var(--primary);
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            margin: 15px 0;
-        }
-
-        .price-box span {
-            color: var(--primary);
-            font-size: 22px;
-            font-weight: bold;
-        }
-
+        /* الأزرار */
         .btn {
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
             width: 100%;
             padding: 14px;
-            margin: 12px 0;
             border-radius: 10px;
-            text-decoration: none;
+            font-size: 15px;
             font-weight: bold;
-            font-size: 16px;
-            text-align: center;
-            box-sizing: border-box;
+            text-decoration: none;
             border: none;
             cursor: pointer;
-            transition: background 0.2s, transform 0.1s;
+            margin-bottom: 10px;
+            transition: transform 0.2s, background-color 0.2s;
         }
 
         .btn:active {
             transform: scale(0.98);
         }
 
-        .wa { background: var(--accent-green); color: #fff; }
-        .wa:hover { background: #20ba5a; }
-
-        .call { background: var(--primary); color: #111; }
-        .call:hover { background: var(--primary-hover); }
-
-        .secondary-btn {
-            background: #2a2a30;
-            color: var(--text-main);
+        .btn-wa {
+            background-color: var(--whatsapp-green);
+            color: #fff;
         }
-        .secondary-btn:hover { background: #383842; }
+        .btn-wa:hover { background-color: #20ba5a; }
 
+        .btn-call {
+            background-color: var(--primary-gold);
+            color: #111;
+        }
+        .btn-call:hover { background-color: var(--gold-hover); }
+
+        .btn-sec {
+            background-color: #24242c;
+            color: var(--text-white);
+        }
+        .btn-sec:hover { background-color: #30303a; }
+
+        /* تتبع الشحنة */
         .tracking-result {
-            margin-top: 10px;
-            padding: 12px;
-            background: #121215;
-            border-radius: 8px;
-            font-size: 14px;
             display: none;
+            margin-top: 15px;
+            padding: 12px;
+            background: #101014;
+            border-right: 3px solid var(--primary-gold);
+            border-radius: 6px;
+            font-size: 13px;
         }
 
         footer {
             text-align: center;
             color: var(--text-muted);
-            font-size: 13px;
-            margin: 30px 0;
+            font-size: 12px;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
-    <!-- الشريط المتحرك العلوي -->
-    <div class="ticker-container">
-        <div class="ticker-text">
-            ☀️ عرض حصري لفترة محدودة: اطلب عبر موقعنا الآن واحصل على خصم خاص ليصبح سعر الطلب الداخلي **10,000 ليرة سورية قديمة / 100 ليرة جديدة** فقط! | خدمة سريعة وآمنة في كافة مناطق درعا والريف.
-        </div>
-    </div>
-
     <div class="container">
-        <!-- الترويسة -->
-        <div class="card header-title">
+        <!-- الترويسة الرئيسية -->
+        <div class="card header-card">
             <h1>☀️ شمس</h1>
             <p>خدمات التوصيل والنقل السريع - درعا، سوريا</p>
-            <div class="badge">🔥 خصم حصري للطلبات عبر الموقع</div>
         </div>
 
-        <!-- حاسبة التكلفة الفورية -->
+        <!-- نموذج إرسال الطلب -->
         <div class="card">
-            <h2>🧮 حاسبة التكلفة التقديرية</h2>
+            <div class="section-title">📦 طلب خدمة توصيل</div>
             <div class="form-group">
-                <label>منطقة الوجهة:</label>
-                <select id="destination" onchange="calculatePrice()">
-                    <option value="10000">درعا البلد / المحطة (داخل المدينة)</option>
-                    <option value="15000">طفس / اليادودة</option>
-                    <option value="20000">الداعورية / النعيمة / صيدا</option>
-                    <option value="25000">إزرع / بصرى الشام</option>
-                </select>
+                <label>اسمك الكريم / المستلم:</label>
+                <input type="text" id="custName" placeholder="أدخل اسمك هنا">
             </div>
-            <div class="price-box">
-                السعر بعد خصم الموقع:<br>
-                <span id="priceDisplay">10,000</span> ل.س قديم &nbsp;|&nbsp; <span id="priceDisplayNew" style="font-size: 18px; color:#fff;">100</span> ل.س جديد
+            <div class="form-group">
+                <label>رقم للتواصل:</label>
+                <input type="tel" id="custPhone" placeholder="09xxxxxxxx">
             </div>
+            <div class="form-group">
+                <label>تفاصيل الطلب والعنوان:</label>
+                <textarea id="custDetails" rows="3" placeholder="أدخل مكان الاستلام والتسليم ونوع الطرد..."></textarea>
+            </div>
+            <button class="btn btn-wa" onclick="sendOrder()">💬 إرسال الطلب عبر الواتساب</button>
         </div>
 
-        <!-- نموذج طلب توصيل سريع -->
+        <!-- تتبع حالة الشحنة -->
         <div class="card">
-            <h2>📦 اطلب شحنتك فوراً عبر الواتساب</h2>
+            <div class="section-title">🔍 تتبع حالة شحنة</div>
             <div class="form-group">
-                <label>اسم الكريم / المستلم:</label>
-                <input type="text" id="clientName" placeholder="أدخل اسمك الكريم">
+                <label>رقم الطلب / الشحنة:</label>
+                <input type="text" id="trackId" placeholder="أدخل رقم الشحنة (مثال: 1001)">
             </div>
-            <div class="form-group">
-                <label>رقم الهاتف للتواصل:</label>
-                <input type="tel" id="clientPhone" placeholder="مثال: 0990000000">
-            </div>
-            <div class="form-group">
-                <label>تفاصيل العنوان / الطلب:</label>
-                <input type="text" id="clientDetails" placeholder="مثال: توصيل طرد من المحطة إلى الحي الشمالي">
-            </div>
-            <button class="btn wa" onclick="sendWhatsAppOrder()">💬 إرسال الطلب عبر الواتساب</button>
-        </div>
-
-        <!-- تتبع الشحنات -->
-        <div class="card">
-            <h2>🔍 تتبع حالة شحنتك</h2>
-            <div class="form-group">
-                <label>رقم الشحنة أو إيصال الطلب:</label>
-                <input type="text" id="trackingId" placeholder="أدخل رقم الشحنة (مثال: 1001)">
-            </div>
-            <button class="btn secondary-btn" onclick="trackShipment()">استعلام عن الحالة</button>
-            <div id="trackingResult" class="tracking-result"></div>
+            <button class="btn btn-sec" onclick="track()">بحث عن الشحنة</button>
+            <div class="tracking-result" id="trackResult"></div>
         </div>
 
         <!-- أرقام الاتصال المباشر -->
-        <div class="card" style="text-align: center;">
-            <h2>📞 الاتصال المباشر</h2>
-            <a href="https://wa.me/963997973734" class="btn wa">💬 مراسلة الواتساب (0997973734)</a>
-            <a href="tel:0934964138" class="btn call">📞 الاتصال المباشر (0934964138)</a>
+        <div class="card">
+            <div class="section-title">📞 تواصل معنا مباشرة</div>
+            <a href="https://wa.me/963997973734" class="btn btn-wa" target="_blank">💬 مراسلة الواتساب (0997973734)</a>
+            <a href="tel:0934964138" class="btn btn-call">📞 الاتصال المباشر (0934964138)</a>
         </div>
 
         <footer>
-            جميع الحقوق محفوظة © شمس للنقل والتوصيل السريع 2026
+            جميع الحقوق محفوظة © شمس للتوصيل السريع 2026
         </footer>
     </div>
 
     <script>
-        function calculatePrice() {
-            const select = document.getElementById('destination');
-            const priceOld = parseInt(select.value);
-            const priceNew = priceOld / 100;
-            
-            document.getElementById('priceDisplay').innerText = priceOld.toLocaleString();
-            document.getElementById('priceDisplayNew').innerText = priceNew.toLocaleString();
-        }
-
-        function sendWhatsAppOrder() {
-            const name = document.getElementById('clientName').value.trim();
-            const phone = document.getElementById('clientPhone').value.trim();
-            const details = document.getElementById('clientDetails').value.trim();
-            const destinationText = document.getElementById('destination').options[document.getElementById('destination').selectedIndex].text;
-            const priceText = document.getElementById('priceDisplay').innerText;
+        function sendOrder() {
+            const name = document.getElementById('custName').value.trim();
+            const phone = document.getElementById('custPhone').value.trim();
+            const details = document.getElementById('custDetails').value.trim();
 
             if(!name || !phone || !details) {
-                alert('الرجاء تعبئة جميع الحقول المطلوبة قبل إرسال الطلب.');
+                alert('الرجاء تعبئة الاسم ورقم الهاتف وتفاصيل الطلب أولاً.');
                 return;
             }
 
-            const message = `مرحباً، أود طلب خدمة توصيل عبر موقعكم (عرض الخصم الخاص):\n\n` +
-                            `👤 الاسم: ${name}\n` +
-                            `📞 الهاتف: ${phone}\n` +
-                            `📍 الوجهة: ${destinationText}\n` +
-                            `📝 التفاصيل: ${details}\n` +
-                            `💰 السعر المقدر بعد الخصم: ${priceText} ل.س`;
+            const msg = `مرحباً، أود إرسال طلب توصيل جديد:\n\n` +
+                        `👤 الاسم: ${name}\n` +
+                        `📞 الرقم: ${phone}\n` +
+                        `📝 التفاصيل والعنوان: ${details}`;
 
-            const encodedMessage = encodeURIComponent(message);
-            window.open(`https://wa.me/963997973734?text=${encodedMessage}`, '_blank');
+            window.open(`https://wa.me/963997973734?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
-        function trackShipment() {
-            const id = document.getElementById('trackingId').value.trim();
-            const resultBox = document.getElementById('trackingResult');
-            
+        function track() {
+            const id = document.getElementById('trackId').value.trim();
+            const res = document.getElementById('trackResult');
             if(!id) {
-                alert('الرجاء إدخال رقم الشحنة أولاً.');
+                alert('يرجى كتابة رقم الشحنة أولاً.');
                 return;
             }
-
-            resultBox.style.display = 'block';
-            resultBox.innerHTML = `⏳ جاري البحث عن الشحنة رقم <b># ${id}</b>... الحالة الحالية: <b>تم استلام الطلب وبانتظار مندوب التوصيل في درعا</b>.`;
+            res.style.display = 'block';
+            res.innerHTML = `📍 الشحنة <b>#${id}</b>: الطلب مقبول ومسند لمندوب التوصيل في منطقة درعا.`;
         }
-
-        // تشغيل الحساب المبدئي عند التحميل
-        calculatePrice();
     </script>
 </body>
 </html>
