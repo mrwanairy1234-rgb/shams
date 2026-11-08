@@ -1,0 +1,19 @@
+{
+  "host": "mrwanairy1234-rgb.github.io",
+  "name": "Shams Delivery",
+  "short_name": "شمس",
+  "start_url": "/shams/",
+  "display": "standalone",
+  "theme_color": "#d4af37",
+  "background_color": "#0a0a0a",
+  "iconUrl": "https://mrwanairy1234-rgb.github.io/shams/icon-512.png",
+  "packageId": "io.github.mrwanairy1234rgb.shamsdelivery",
+  "launcherName": "شمس",
+  "signingKey": {
+    "path": "android.keystore",
+    "alias": "android"
+  },
+  "appUrl": "https://mrwanairy1234-rgb.github.io/shams/",
+  "shortcuts": [],
+  "generatorApp": "bubblewrap-cli"
+}
