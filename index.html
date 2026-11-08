@@ -86,6 +86,62 @@
             padding-bottom: 10px;
         }
 
+        /* شبكة الخدمات */
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .service-item {
+            background: #101014;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 15px;
+            transition: border-color 0.3s;
+        }
+
+        .service-item:hover {
+            border-color: var(--primary-gold);
+        }
+
+        .service-item h3 {
+            color: var(--primary-gold);
+            font-size: 15px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .service-item p {
+            color: var(--text-muted);
+            font-size: 13px;
+            margin: 0;
+        }
+
+        /* قائمة الميزات */
+        .features-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .features-list li {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            color: var(--primary-gold);
+            font-weight: bold;
+        }
+
         /* أدوات التحكم في النموذج */
         .form-group {
             margin-bottom: 15px;
@@ -180,6 +236,37 @@
         <div class="card header-card">
             <h1>☀️ شمس</h1>
             <p>خدمات التوصيل والنقل السريع - درعا، سوريا</p>
+        </div>
+
+        <!-- تعريف بالخدمة وشرحها -->
+        <div class="card">
+            <div class="section-title">ℹ️ عن شمس للتوصيل</div>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 15px;">
+                نحن في <b>شمس</b> نقدم شبكة توصيل ونقل سريع تضمن وصول أظرفكم، طرودكم، وبضائعكم بأمان وسرعة داخل مدينة درعا وكافة مدن وبلدات المحافظة.
+            </p>
+            
+            <div class="services-grid">
+                <div class="service-item">
+                    <h3>📦 توصيل الطرود والطلبيات</h3>
+                    <p>نقل سريع للطرود الشخصية، المشتريات، والهدايا من باب إلى باب.</p>
+                </div>
+                <div class="service-item">
+                    <h3>🚀 النقل الفوري العاجل</h3>
+                    <p>توصيل المراسلات والأوراق الهامة في أسرع وقت ممكن وبأمان كامل.</p>
+                </div>
+                <div class="service-item">
+                    <h3>🛍️ قضاء الحوائج والمشتريات</h3>
+                    <p>نشتري لك مستلزماتك وأغراضك ونوصلها مباشرة إلى عتبة منزلك.</p>
+                </div>
+            </div>
+
+            <h4 style="color: var(--primary-gold); font-size: 14px; margin: 15px 0 10px;">لماذا تختار شمس؟</h4>
+            <ul class="features-list">
+                <li>سرعة في الاستجابة والتسليم في الوقت المحدد.</li>
+                <li>تغطية شاملة لمدينة درعا وبلدات الريف.</li>
+                <li>أمان تام على المحتويات مع إمكانية التتبع الفوري.</li>
+                <li>أسعار مناسبة وخدمة عملاء مباشرة عبر الواتساب.</li>
+            </ul>
         </div>
 
         <!-- نموذج إرسال الطلب -->
