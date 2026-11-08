@@ -44,7 +44,7 @@
             background-attachment: fixed;
         }
 
-        /* Fullscreen Cinematic Splash Screen Launch */
+        /* Splash Screen Launch */
         #splash-screen {
             position: fixed;
             top: 0;
@@ -126,14 +126,12 @@
             100% { width: 100%; }
         }
 
-        /* Container */
         .container {
             max-width: 600px;
             margin: 0 auto;
             padding: 24px 16px;
         }
 
-        /* Luxury Card */
         .luxury-card {
             background: var(--card-glass);
             backdrop-filter: blur(30px);
@@ -195,10 +193,7 @@
             margin-bottom: 8px;
         }
 
-        .hero-header p {
-            color: var(--text-sub);
-            font-size: 15px;
-        }
+        .hero-header p { color: var(--text-sub); font-size: 15px; }
 
         .vip-badge {
             display: inline-flex;
@@ -255,7 +250,6 @@
             font-size: 16px;
         }
 
-        /* Services Grid */
         .services-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -291,19 +285,9 @@
             flex-shrink: 0;
         }
 
-        .service-content h3 {
-            color: var(--gold-light);
-            font-size: 17px;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
+        .service-content h3 { color: var(--gold-light); font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+        .service-content p { color: var(--text-sub); font-size: 13.5px; }
 
-        .service-content p {
-            color: var(--text-sub);
-            font-size: 13.5px;
-        }
-
-        /* Fleet Options */
         .vehicle-options {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -336,9 +320,7 @@
             box-shadow: 0 0 25px rgba(212, 175, 55, 0.35);
         }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+        .form-group { margin-bottom: 20px; }
 
         label {
             display: block;
@@ -365,7 +347,6 @@
             box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
         }
 
-        /* Negotiation Box Style */
         .negotiation-box {
             background: linear-gradient(145deg, #0d0d12, #050508);
             border: 2px solid var(--gold-primary);
@@ -489,15 +470,15 @@
             <div class="vip-badge">✨ الأسرع والأكثر تطوراً في المحافظة</div>
         </div>
 
-        <!-- NEW: Smart AI Services Assistant Widget -->
+        <!-- Fully Dynamic Smart AI Assistant -->
         <div class="luxury-card">
-            <div class="section-title">🤖 مساعد شمس الذكي (مكونات طبخ & استشارة أدوية)</div>
+            <div class="section-title">🤖 مساعد شمس الذكي (مطبخ، صيدلية، ومشتريات عامة)</div>
             <div class="ai-assistant-box">
-                <p style="font-size: 13px; color: var(--text-sub); margin-bottom: 12px;">اكتب اسم الطبخة للحصول على مكوناتها فوراً، أو استفسر عن أي دواء أو حاجة لتأمينها عبر التوصيل:</p>
+                <p style="font-size: 13px; color: var(--text-sub); margin-bottom: 12px;">اكتب اسم أي طبخة (كبسة، بيتزا، ملوخية...) أو أي دواء أو أي غرض لتأمين المكونات وتوصيلها فوراً:</p>
                 <div class="form-group" style="margin-bottom: 12px;">
-                    <input type="text" id="aiInput" placeholder="مثال: مكونات مقلوبة لحمة، أو دواء سيتامول...">
+                    <input type="text" id="aiInput" placeholder="أدخل اسم الطبخة أو الدواء هنا (مثال: كبسة دجاج، ملوخية، بنادول...)">
                 </div>
-                <button class="btn btn-ai" onclick="runSmartAI()">✨ استفسر واطلب المكونات فوراً</button>
+                <button class="btn btn-ai" onclick="runSmartAI()">✨ تحليل الأغراض والمكونات تلقائياً</button>
                 
                 <div id="aiResult" class="ai-result-card">
                     <h4 id="aiTitle">📌 النتيجة والمكونات المطلوبة:</h4>
@@ -515,7 +496,7 @@
                     <div class="service-icon">📦</div>
                     <div class="service-content">
                         <h3>توصيل الطرود والشحنات VIP</h3>
-                        <p>نقل فائق السرعة والأمان للشحنات الشخصية ومشتريات المتاجر من الباب إلى الباب مع عناية خاصة.</p>
+                        <p>نقل فائق السرعة والأمان للشحنات الشخصية ومشتريات المتاجر من الباب إلى الباب بعناية فائقة.</p>
                     </div>
                 </div>
                 <div class="service-item">
@@ -624,7 +605,7 @@
     </div>
 
     <script>
-        // Automatic Splash Screen Logic
+        // Splash Screen Transition
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const splash = document.getElementById('splash-screen');
@@ -633,8 +614,31 @@
             }, 2200);
         });
 
-        // Built-in Smart AI Engine Logic
+        // Comprehensive AI Recipes & Medicine Knowledge Base
+        const aiDatabase = {
+            recipes: {
+                "مقلوبة": ["لحم أو دجاج طازج", "رز قصير مغسول", "باذنجان / زهره / بطاطا", "بهارات مقلوبة وسمنة", "مكسرات للتزيين"],
+                "كبسة": ["دجاج أو لحم غنم", "رز بسمتي طويل", "بندورة ومعجون طماطم", "بهارات كبسة وقرفة", "مكسرات وفلفل حار"],
+                "ملوخية": ["ملوخية ورق أو ناعمة", "دجاج بلدي طازج", "ثوم وكزبرة يابسة", "سمنة زبدة وثوم", "ليمون طازج"],
+                "شاكرية": ["لحم شقف طازج", "لبن رائب ونشاء", "بصل وسمنة بلدي", "رز بشعيرية", "مكسرات وسنوبر"],
+                "شيش برك": ["عجين طازج", "لحم مفروم وبصل", "لبن مطبوخ وثوم", "كزبرة يابسة وسمنة", "رز بالشعيرية"],
+                "بيتزا": ["طحين وخميرة وعجين", "جبنة موزاريلا وشيدر", "صلصة بيتزا وطماطم", "زيتون أسود وفلفل ألوان", "فطر أو صوصج"],
+                "برغر": ["لحم برغر طازج أو دجاج", "خبز برغر سمسم", "جبن شيدر شرائح", "خس وبندورة وصوص", "بطاطا مقلية"],
+                "شاورما": ["دجاج أو لحم مسحب", "خبز صاج أو سياحي", "ثومية ومخلل خيار", "بطاطا وزيت زيتون"],
+                "مجدرة": ["عدس بني مغسول", "برغل أو رز", "بصل مقلي مقرمش", "زيت زيتون بلدي", "لبن وسلطة"],
+                "فتوش": ["خس وبندورة وخيار", "نعنع وبقدونس وفجل", "خبز محمص مقرمش", "سماق ودبس رمان", "زيت زيتون وليمون"]
+            },
+            medicines: {
+                "سيتامول": "مسكن آلام خفيف ومخفض حرارة متوفر بدون وصفة.",
+                "بنادول": "مسكن آلام عام ومخفض حرارة آمن.",
+                "بروفين": "مضاد التهاب ومسكن آلام المفاصل والأسنان.",
+                "فيتامين": "مكملات غذائية ومقويات عامة للجسم.",
+                "التهاب": "مضادات حيوية ومسكنات (تتطلب وصفة طبية من الصيدلية)."
+            }
+        };
+
         let lastAiQuery = "";
+
         function runSmartAI() {
             const query = document.getElementById('aiInput').value.trim();
             const resBox = document.getElementById('aiResult');
@@ -642,28 +646,52 @@
             const body = document.getElementById('aiBody');
 
             if(!query) {
-                alert('الرجاء كتابة اسم الطبخة أو الدواء أولاً.');
+                alert('الرجاء كتابة اسم الطبخة أو الدواء أو المشتريات أولاً.');
                 return;
             }
 
             lastAiQuery = query;
             resBox.style.display = 'block';
 
-            if(query.includes('مقلوبة') || query.includes('طبخ') || query.includes('كبسة') || query.includes('شاكرية')) {
-                title.innerText = `🍳 مكونات وجبة (${query}):`;
-                body.innerHTML = `• كيلو لحمة أو دجاج طازج<br>• رز قصير أو طويل حسب الطلب<br>• خضار (باذنجان/زهور/بطاطا)<br>• بهارات مشكلة، مكسرات، وزيت<br><br><b>💡 فريق شمس جاهز لشراء هذه المقادير فوراً وتوصيلها لباب بيتك!</b>`;
-            } else if(query.includes('دواء') || query.includes('سيتامول') || query.includes('التهاب') || query.includes('وجع')) {
-                title.innerText = `💊 الاستفسار الطبي لمادة (${query}):`;
-                body.innerHTML = `تأمين الأدوية والمسكنات والشرابات الطبية متوفر لدينا.<br><b>⚠️ تنبيه: يرجى إبراز الوصفة الطبية إن وجدت للمندوب عند التسليم.</b>`;
-            } else {
-                title.innerText = `📝 استفسار خدمي حول (${query}):`;
-                body.innerHTML = `تم استلام طلبك الخاص حول (${query}). يمكنك إرساله مباشرة للإدارة لتأمينه عبر مندوبينا.`;
+            // Check Recipes Database
+            let foundRecipe = null;
+            for(let key in aiDatabase.recipes) {
+                if(query.includes(key)) {
+                    foundRecipe = { name: key, items: aiDatabase.recipes[key] };
+                    break;
+                }
             }
+
+            if(foundRecipe) {
+                title.innerText = `🍳 مقادير وجبة (${foundRecipe.name}):`;
+                let itemsList = foundRecipe.items.map(item => `• ${item}`).join('<br>');
+                body.innerHTML = `${itemsList}<br><br><b>💡 مندوب شمس جاهز لشراء كافة هذه المقادير وتوصيلها فوراً إلى منزلكم!</b>`;
+                return;
+            }
+
+            // Check Medicines Database
+            let foundMed = null;
+            for(let key in aiDatabase.medicines) {
+                if(query.includes(key)) {
+                    foundMed = { name: key, info: aiDatabase.medicines[key] };
+                    break;
+                }
+            }
+
+            if(foundMed) {
+                title.innerText = `💊 الاستفسار الصيدلاني عن (${foundMed.name}):`;
+                body.innerHTML = `${foundMed.info}<br><br><b>💡 مندوب شمس سيقوم بتأمين الدواء من الصيدلية وإحضاره لك فوراً.</b>`;
+                return;
+            }
+
+            // General Dynamic Generator for Any Other Item
+            title.innerText = `📝 المقادير والتفاصيل التقديرية لـ (${query}):`;
+            body.innerHTML = `• المواد الأساسية الخاصة بـ (${query})<br>• المستلزمات الطازجة والمكملات<br>• خدمة الشراء والتغليف السريع<br><br><b>💡 فريق شمس مستعد لتأمين كافة طلبات (${query}) فوراً وشحنها لمنزلك!</b>`;
         }
 
         function orderAiItems() {
             const detailsBox = document.getElementById('cDetails');
-            detailsBox.value = `طلب خاص عبر المساعد الذكي: تأمين وتوصيل (${lastAiQuery})`;
+            detailsBox.value = `طلب شراء وتوصيل عبر المساعد الذكي: (${lastAiQuery})`;
             detailsBox.scrollIntoView({ behavior: 'smooth' });
         }
 
