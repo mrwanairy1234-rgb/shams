@@ -140,8 +140,8 @@
         /* حاسبة الأجرة */
         .vehicle-options {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
             margin-bottom: 15px;
         }
 
@@ -149,10 +149,10 @@
             background: var(--input-bg);
             border: 1px solid var(--card-border);
             border-radius: 10px;
-            padding: 10px 5px;
+            padding: 12px 5px;
             text-align: center;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 13px;
             color: var(--text-muted);
             transition: all 0.3s;
         }
@@ -298,7 +298,7 @@
 <body>
 
     <div class="container">
-        <!-- Título y غلاف الصفحة -->
+        <!-- الترويسة الرئيسية -->
         <div class="card header-card">
             <div class="logo-icon">☀️</div>
             <h1>شمس</h1>
@@ -320,7 +320,7 @@
                 </div>
                 <div class="service-box">
                     <h3>🌾 شحن وتوزيع القرى والريف</h3>
-                    <p>تغطية كاملة لنقل الأغراض والشحنات الثقيلة بين مدينة درعا وكافة مدن وبلدات الريف.</p>
+                    <p>تغطية كاملة لنقل الأغراض بين مدينة درعا وكافة مدن وبلدات الريف بسرعة وأمان.</p>
                 </div>
             </div>
         </div>
@@ -330,28 +330,27 @@
             <div class="section-title">🧮 حاسبة التكلفة التقديرية</div>
             
             <div class="form-group">
-                <label>اختر وسيلة النقل المناسبة لشحنتك:</label>
+                <label>اختر وسيلة النقل:</label>
                 <div class="vehicle-options">
-                    <div class="vehicle-btn active" onclick="setVehicle(this, 1)">دراجة نارية</div>
-                    <div class="vehicle-btn" onclick="setVehicle(this, 1.4)">سيارة سياحية</div>
-                    <div class="vehicle-btn" onclick="setVehicle(this, 2.1)">شاحنة / سوزوكي</div>
+                    <div class="vehicle-btn" onclick="setVehicle(this, 0.6)">دراجة نارية</div>
+                    <div class="vehicle-btn active" onclick="setVehicle(this, 1)">سيارة سياحية</div>
                 </div>
             </div>
 
             <div class="form-group">
                 <label>حدد الوجهة المطلوبة:</label>
                 <select id="destination" onchange="updatePrice()">
-                    <option value="15000">درعا البلد / المحطة (داخل المدينة)</option>
-                    <option value="25000">اليادودة / طفس / النعيمة / صيدا (قرى قريبة)</option>
-                    <option value="35000">الداعورية / خربا / الغارية الشرقية والغربية</option>
-                    <option value="45000">إزرع / بصرى الشام / نوى / جاسم (الريف البعيد)</option>
+                    <option value="25000">درعا البلد / المحطة (داخل المدينة)</option>
+                    <option value="40000">اليادودة / طفس / النعيمة / صيدا (قرى قريبة)</option>
+                    <option value="60000">/ خربا / الغارية الشرقية والغربية</option>
+                    <option value="80000">إزرع / بصرى الشام / نوى / جاسم (الريف البعيد)</option>
                 </select>
             </div>
 
             <div class="price-display">
                 <label>التكلفة التقديرية للرحلة:</label>
-                <div class="price-val" id="priceOld">15,000 ل.س</div>
-                <div class="price-sub" id="priceNew">تساوي تقريباً: 150 ليرة جديدة</div>
+                <div class="price-val" id="priceOld">25,000 ل.س</div>
+                <div class="price-sub" id="priceNew">تساوي تقريباً: 250 ليرة جديدة</div>
             </div>
         </div>
 
@@ -384,7 +383,7 @@
             <div class="tracking-result" id="trackBox"></div>
         </div>
 
-        <!-- الاتصال والتواصل Direct -->
+        <!-- الاتصال والتواصل المباشر -->
         <div class="card">
             <div class="section-title">📞 تواصل مع الدعم المباشر</div>
             <a href="https://wa.me/963997973734" class="btn btn-wa" target="_blank">💬 الواتساب المباشر (0997973734)</a>
@@ -438,7 +437,7 @@
                         `📞 الهاتف: ${phone}\n` +
                         `📍 المنطقة والوجهة: ${destName}\n` +
                         `📝 التفاصيل والعنوان: ${details}\n` +
-                        `💰 التكلفة التقديرية حسب الحاسبة: ${priceEst}`;
+                        `💰 التكلفة التقديرية: ${priceEst}`;
 
             window.open(`https://wa.me/963997973734?text=${encodeURIComponent(msg)}`, '_blank');
         }
