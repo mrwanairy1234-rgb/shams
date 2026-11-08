@@ -44,6 +44,89 @@
             background-attachment: fixed;
         }
 
+        /* Fullscreen Cinematic Splash Screen Launch */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #020204;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: opacity 1s cubic-bezier(0.165, 0.84, 0.44, 1), visibility 1s;
+        }
+
+        .splash-logo-wrap {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            margin-bottom: 24px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.35) 0%, rgba(10, 10, 15, 0.98) 75%);
+            border: 2px solid var(--gold-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 60px rgba(212, 175, 55, 0.5);
+            animation: logo-glow 2s infinite alternate ease-in-out;
+        }
+
+        @keyframes logo-glow {
+            0% { transform: scale(0.95); box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); }
+            100% { transform: scale(1.05); box-shadow: 0 0 70px rgba(212, 175, 55, 0.7); }
+        }
+
+        .splash-logo {
+            font-size: 65px;
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.9));
+        }
+
+        .splash-title {
+            font-size: 40px;
+            font-weight: 900;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+        }
+
+        .splash-subtitle {
+            color: var(--text-sub);
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .loader-bar-bg {
+            width: 220px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .loader-bar-fill {
+            width: 0%;
+            height: 100%;
+            background: var(--gold-gradient);
+            box-shadow: 0 0 15px var(--gold-primary);
+            animation: loadProgress 2.2s ease-in-out forwards;
+        }
+
+        @keyframes loadProgress {
+            0% { width: 0%; }
+            50% { width: 65%; }
+            100% { width: 100%; }
+        }
+
+        /* Container */
         .container {
             max-width: 600px;
             margin: 0 auto;
@@ -191,7 +274,7 @@
             font-weight: 600;
         }
 
-        /* Services Grid (Enhanced & Sophisticated) */
+        /* Services Grid */
         .services-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -242,7 +325,7 @@
             line-height: 1.6;
         }
 
-        /* Fleet Options (Vehicle Selection) */
+        /* Fleet Options */
         .vehicle-options {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -433,6 +516,18 @@
 </head>
 <body>
 
+    <!-- Cinematic Splash Screen Container -->
+    <div id="splash-screen">
+        <div class="splash-logo-wrap">
+            <div class="splash-logo">☀️</div>
+        </div>
+        <div class="splash-title">شـمـس</div>
+        <div class="splash-subtitle">جاري تحضير تجربة النقل الملكية...</div>
+        <div class="loader-bar-bg">
+            <div class="loader-bar-fill"></div>
+        </div>
+    </div>
+
     <div class="container">
         <!-- Hero Header -->
         <div class="luxury-card hero-header">
@@ -473,18 +568,24 @@
                 </div>
                 <div class="service-item">
                     <div class="service-icon">🛍️</div>
-                    <h3>قضاء الحوائج والمشتريات الخاصة</h3>
-                    <p>تأمين كافة المستلزمات اليومية، الطلبات من المطاعم، والأدوية الإسعافية وتوصيلها بخصوصية وسرعة لا مثيل لها.</p>
+                    <div class="service-content">
+                        <h3>قضاء الحوائج والمشتريات الخاصة</h3>
+                        <p>تأمين كافة المستلزمات اليومية، الطلبات من المطاعم، والأدوية الإسعافية وتوصيلها بخصوصية وسرعة لا مثيل لها.</p>
+                    </div>
                 </div>
                 <div class="service-item">
                     <div class="service-icon">🌾</div>
-                    <h3>خدمة القرى والريف المحيط</h3>
-                    <p>ربط ملكي مباشر ومستمر بين مدينة درعا وكافة مدن وبلدات الريف (شمالاً وجنوباً وغرباً) دون أي تأخير.</p>
+                    <div class="service-content">
+                        <h3>خدمة القرى والريف المحيط</h3>
+                        <p>ربط ملكي مباشر ومستمر بين مدينة درعا وكافة مدن وبلدات الريف (شمالاً وجنوباً وغرباً) دون أي تأخير.</p>
+                    </div>
                 </div>
                 <div class="service-item">
                     <div class="service-icon">💼</div>
-                    <h3>نقل المستندات والبريد الرسمي</h3>
-                    <p>خدمة سرية وموثوقة موجهة للشركات والمكاتب ورجال الأعمال لنقل الوثائق والتعاميم الهامة بأمان تام.</p>
+                    <div class="service-content">
+                        <h3>نقل المستندات والبريد الرسمي</h3>
+                        <p>خدمة سرية وموثوقة موجهة للشركات والمكاتب ورجال الأعمال لنقل الوثائق والتعاميم الهامة بأمان تام.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -571,6 +672,15 @@
     </div>
 
     <script>
+        // Automatic Splash Screen Fade Out Logic
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const splash = document.getElementById('splash-screen');
+                splash.style.opacity = '0';
+                splash.style.visibility = 'hidden';
+            }, 2300);
+        });
+
         let vehicleMultiplier = 1;
         let baseStandardPrice = 25000;
         let selectedVehicleName = "تاكسي فيرنا";
